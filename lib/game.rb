@@ -9,30 +9,18 @@ class Game
 
   def current_player
     if self.board.turn_count % 2 == 0
-      @player_1
+      self.player_1
     else
-      @player_2
+      self.player_2
     end
   end
 
   def over?
-    if self.board.full? || won?
-      true
-    else
-      false
-    end
+    draw? || won?
   end
 
   def won?
-    if self.combination_test != nil
-      true
-    else
-      false
-    end
-  end
-
-  def combination_test
-    result = nil
+    result = false
     WIN_COMBINATIONS.each do |win_combination|
 
       position_1 = self.board.cells[win_combination[0]]
@@ -47,7 +35,7 @@ class Game
   end
 
   def draw?
-    if self.over? && !self.won?
+    if self.board.full? && !won?
       true
     else
       false
@@ -56,7 +44,7 @@ class Game
 
   def winner
     if won?
-      player = combination_test
+      player = won?
       return self.board.cells[player[0]]
     else
       return nil
@@ -72,7 +60,10 @@ class Game
   end
 
   def play
-    until over? || won? || draw? do
+    until over? do
+      self.board.display
+      puts "\n"
+      puts "~~~~~~~~~~~"
       turn
     end
     if won?

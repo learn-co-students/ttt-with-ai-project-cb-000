@@ -48,11 +48,7 @@ class Board
   end
 
   def valid_move?(input)
-    if self.taken?(input) || input.length > 1
-      false
-    else
-      true
-    end
+    input.to_i.between?(1,9) && !taken?(input)
   end
 
   def update(input, player)
