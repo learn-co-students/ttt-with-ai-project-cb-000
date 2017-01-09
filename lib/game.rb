@@ -43,7 +43,7 @@ class Game
 
 	def turn
 		@board.display
-		move = current_player.move([])
+		move = current_player.move(@board)
 		if @board.valid_move?(move) == true
 			@board.update(move, current_player)
 		else
