@@ -28,7 +28,7 @@ module Players
       if self.skill == "hard" || self.skill == 2
         move = self.hard
       elsif self.skill =="normal" || self.skill == 1
-        move = self.normal 
+        move = self.normal
       else
         move = self.easy
       end
@@ -42,17 +42,17 @@ module Players
       find_valid_moves(self.board).sample.to_s
     end
 
+    #Both the normal and hard versions of the computer utilize Minimax.
     #When researching Minimax I didn't read that much about opening moves.
     #What is interesting is that using a simple opening move in the hard
-    #version of computer player dramatically increased
+    #version of computer player dramatically increased the win rate versus
+    #the random computer player (appoximately by 15%). Eliminating the
+    #opening move also improved the AI speed by a large measure.
+
     def normal
       find_move(self.board,self,0).to_s
     end
 
-    #Uses Minimax to traverse through the board structure. Added simple
-    #struct to choose the best opening move and then call Minimax after
-    #opening. Assuming the perfect opponent all opening moves result in
-    #draws which causes Minimax to be indecisive.
     def hard
       moves = find_valid_moves(self.board)
 

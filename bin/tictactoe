@@ -3,15 +3,3 @@
 require_relative '../config/environment'
 
 Game.new.play
-#           1    2    3    4    5    6    7    8    9
-#boards = [["X", "O", "X", "O", "X", "X", "O", "X", "O"], #0 Draw
-#          ["X", "O", "X", "O", "X", "X", "O", "O", "X"], #1 X win
-#          ["X", " ", " ", " ", "X", " ", " ", " ", "X"], #2 X win
-#          ["X", "O", " ", " ", "O", " ", " ", "O", "X"], #3 O win
-#          ["X", "O", "X", "O", "O", "X", " ", " ", " "]] #4 Not finished
-#
-#board = Board.new
-#board.cells = boards[4]
-#player = Players::Computer.new("X")
-#player.move(board)
-#player.find_move(board , player)

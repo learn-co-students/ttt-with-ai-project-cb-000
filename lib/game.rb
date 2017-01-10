@@ -48,7 +48,7 @@ class Game
     self.board.update(move,player)
   end
 
-  #Call play loop when doing multiple games and until user doesn't continue
+
   def play
     exit = false
     count = 0
