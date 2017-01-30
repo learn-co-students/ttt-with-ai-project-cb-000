@@ -1,6 +1,6 @@
 class Board
   attr_accessor :cells
-  @cells = ["O", " ", " ", " ", "X", " ", " ", " ", "X"]
+  @cells = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
   def initialize
     self.reset!
