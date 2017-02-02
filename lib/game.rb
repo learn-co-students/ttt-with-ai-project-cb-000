@@ -46,6 +46,10 @@ class Game
     [6,4,2]
   ]
 
+  def combos
+    WIN_COMBINATIONS
+  end
+
   def won?
     WIN_COMBINATIONS.detect do |wc|
       board.cells[wc[0]] == board.cells[wc[1]] &&
