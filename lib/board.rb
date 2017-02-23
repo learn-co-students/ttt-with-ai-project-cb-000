@@ -1,10 +1,11 @@
+require 'pry'
 class Board
   attr_accessor :cells
 
   @cells = []
 
   def initialize
-    self.reset!
+    self.reset! #=> Stars a new game with a fresh board.
   end
 
   def reset!
@@ -19,32 +20,15 @@ class Board
     puts " #{cells[6]} | #{cells[7]} | #{cells[8]} "
   end
 
-  def position(input)
+  def position(input) #=> Returns the correct position in the array. ("X"||"O"| " ")
     cells[input.to_i-1]
   end
 
-  def full?
-    cells.all?{|x| x == "X" || x == "O"}
-    # if all the cells are filled with either "X" of "O" return true, else return false
+  def full? #=> Returns true/false.
+    !cells.include?(" ")
   end
 
-# or more concise
-  # def full?
-  # 	cells.all?{|c| taken?(c)}
-  # end
-# that way you don't repeat logic that is the same twice
-
-  # def turn_count
-  #   y = []
-  #   cells.each do |i|
-  #     if i == "X" || i == "O"
-  #       y << i
-  #     end
-  #   end
-  #   y.count
-  # end
-  # a more elloquent way to do turn_count would be:
-  def turn_count
+  def turn_count #=> Returns_an_i of the total moves so far in the game.
     cells.count{|x| x == "X" || x == "O"}
   end
 
@@ -56,9 +40,8 @@ class Board
   #     false
   #   end
   # end
-  def taken?(move)
-    x = move.to_i - 1
-    @cells[x] == "X" || @cells[x] == "O"
+  def taken?(position)
+    self.position(position) == "X" || self.position(position) == "O"
   end
 
   # def valid_move?(move)
@@ -72,7 +55,7 @@ class Board
   end
 
   def update(move, player)
-    @cells[move.to_i - 1] = player.token
+    cells[move.to_i - 1] = player.token
   end
 
 end
