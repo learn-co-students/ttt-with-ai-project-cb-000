@@ -32,25 +32,11 @@ class Board
     cells.count{|x| x == "X" || x == "O"}
   end
 
-  # def taken?(move)
-  #   x = move.to_i - 1
-  #   if @cells[x] == "X" || @cells[x] == "O"
-  #     true
-  #   else
-  #     false
-  #   end
-  # end
-  def taken?(position)
+  def taken?(position) #=> Returns true/false.
     self.position(position) == "X" || self.position(position) == "O"
   end
 
-  # def valid_move?(move)
-  #   if move.to_i >= 1 && move.to_i <= 9 && !taken?(move)
-  #     true
-  #   end
-  # end
-  # more terse alt:
-  def valid_move?(move)
+  def valid_move?(move) #=> Returns true/false.
     move.to_i.between?(1,9) && !taken?(move)
   end
 
