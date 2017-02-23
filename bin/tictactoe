@@ -27,6 +27,7 @@ def start
 
   puts "Play again?"
   input = gets.strip
+
   if input.downcase == "no" || input.downcase == "n"
     exit
   elsif input.downcase == "yes" || input.downcase == "y"
@@ -34,11 +35,13 @@ def start
   else
     puts "Say what? How about a yes or a no?"
     input = gets.strip
+
       if input.downcase == "no" || input.downcase == "n"
         exit
       else input.downcase == "yes" || input.downcase == "y"
         start
       end
+
   end
 end
 
