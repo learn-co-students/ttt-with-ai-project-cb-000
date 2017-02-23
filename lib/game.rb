@@ -44,16 +44,14 @@ class Game
   end
 
   def turn
-    player = current_player
-    move = player.move(board)
+    player = current_player #=> Recieves the inst. of the player via #current_player.
+    move = player.move(board) #=> Recieves the move of the player inst. via #move.
     if !board.valid_move?(move)
-      puts "That's not a valid move. It's either taken or out of range."
+      puts "That's not a valid move. Make a new move."
       turn
     else
-      puts "\n"
-      board.update(move, player)
-      board.display
-      puts "\n"
+      board.update(move, player) #=> Places the players token on the board.
+      board.display #=> Displays the updated board.
     end
   end
 
@@ -67,13 +65,5 @@ class Game
       puts "Cat's Game!"
     end
   end
-
-
-
-# play
-# congratulates the winner X (FAILED - 1)
-#     congratulates the winner O (FAILED - 2)
-#     prints "Cat's Game!" on a draw (FAILED - 3)
-#     plays through an entire game (FAILED - 4)
-
+  
 end
