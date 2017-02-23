@@ -1,14 +1,13 @@
 class Board
   attr_accessor :cells
-
-  @cells = []
+  @cells = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
   def initialize
-    reset!
+    self.reset!
   end
 
   def reset!
-    @cells = Array.new(9, " ")
+    @cells = [" "," "," "," "," "," "," "," "," "]
   end
 
   def display
@@ -19,24 +18,56 @@ class Board
     puts " #{cells[6]} | #{cells[7]} | #{cells[8]} "
   end
 
-  def position(position)
-    @cells[position.to_i - 1]
+  def position(input)
+    cells[input.to_i-1]
   end
 
   def full?
-    !@cells.include?(" ")
+    cells.all?{|x| x == "X" || x == "O"}
+    # if all the cells are filled with either "X" of "O" return true, else return false
   end
 
+# or more concise
+  # def full?
+  # 	cells.all?{|c| taken?(c)}
+  # end
+# that way you don't repeat logic that is the same twice
+
+  # def turn_count
+  #   y = []
+  #   cells.each do |i|
+  #     if i == "X" || i == "O"
+  #       y << i
+  #     end
+  #   end
+  #   y.count
+  # end
+  # a more elloquent way to do turn_count would be:
   def turn_count
-    cells.count{|cell| cell == "X" || cell == "O"}
+    cells.count{|x| x == "X" || x == "O"}
   end
 
-  def taken?(position)
-    self.position(position) == "X" || self.position(position) == "O"
+  # def taken?(move)
+  #   x = move.to_i - 1
+  #   if @cells[x] == "X" || @cells[x] == "O"
+  #     true
+  #   else
+  #     false
+  #   end
+  # end
+  def taken?(move)
+    x = move.to_i - 1
+    @cells[x] == "X" || @cells[x] == "O"
   end
 
-  def valid_move?(position)
-    !taken?(position) && position.to_i.between?(1,9)
+  # def valid_move?(move)
+  #   if move.to_i >= 1 && move.to_i <= 9 && !taken?(move)
+  #     true
+  #   end
+  # end
+  # more terse alt:
+  def valid_move?(move)
+    move.to_i.between?(1,9) && !taken?(move)
   end
 
   def update(move, player)
