@@ -40,7 +40,7 @@ class Board
     move.to_i.between?(1,9) && !taken?(move)
   end
 
-  def update(move, player)
+  def update(move, player) #=> Places the players token in the correct cell of the board.
     cells[move.to_i - 1] = player.token
   end
 
