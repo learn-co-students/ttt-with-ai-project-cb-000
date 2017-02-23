@@ -1,13 +1,14 @@
 class Board
   attr_accessor :cells
-  @cells = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+
+  @cells = []
 
   def initialize
     self.reset!
   end
 
   def reset!
-    @cells = [" "," "," "," "," "," "," "," "," "]
+    @cells = Array.new(9, " ")
   end
 
   def display
