@@ -27,6 +27,10 @@ class Board
 		self.cells[input_to_index(input)]
 	end
 
+	def available_spaces
+		self.cells.select { |cell| cell == ' ' }
+	end
+
 	def full?
 		!self.cells.any? { |cell| cell == ' ' }
 	end
