@@ -16,12 +16,9 @@ loop do
   break if game_type == "0" || game_type == "1" || game_type == "2"
 end
 
-if game_type == "0"
-
+if game_type == "0" # computer vs. computer
   game = Game.new(Players::Computer.new("X"), Players::Computer.new("O"))
-
-elsif game_type == "1"
-
+elsif game_type == "1" # player vs. computer
   first_player = nil
   loop do
     puts "Who should go first, player(p) or computer(c)?"
@@ -34,11 +31,8 @@ elsif game_type == "1"
   else
     game = Game.new(Players::Human.new("X"), Players::Computer.new("O"))
   end
-
-else
-
+else # two player game
   game = Game.new
-
 end
 
 game.board.display
