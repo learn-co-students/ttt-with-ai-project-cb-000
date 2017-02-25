@@ -2,7 +2,7 @@ require 'pry'
 
 class Game
 
-	attr_accessor :board, :player_1, :player_2
+	attr_accessor :board, :player_1, :player_2, :ui
 
 	WIN_COMBINATIONS = [
 		[0, 1, 2], [3, 4, 5],	[6, 7, 8], # horizontal rows
@@ -52,6 +52,7 @@ class Game
 	def turn
 		player = self.current_player
 		position = player.move(self.board) while !self.board.valid_move?(position)
+		self.ui.clear_screen
 		self.board.update(position, player)
 		self.board.display
 	end
