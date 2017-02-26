@@ -1,3 +1,25 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+
+
+# def call
+# 	start
+# end
+
+
+
+# def start
+	puts "Would you like to play a game?"
+	puts "How many players: 0, 1, 2"
+	players = gets.strip
+    
+    if(players == "0")
+    	game = Game.new(Players::Computer.new("X"), Players::Computer.new("O"))
+    	game.play
+    end
+
+
+	
+# end
