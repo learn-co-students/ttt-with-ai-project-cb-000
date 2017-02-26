@@ -13,7 +13,7 @@ require_relative '../config/environment'
     	game = Game.new(Players::Computer.new("X"), Players::Computer.new("O"))
     elsif(players == "1")
     	player_1 = nil
-    	puts "Who should go first, you or the machine?"
+    	puts "Who should go first, you(type me) or Joshua?"
     	player_1 = gets.chomp
     	if(player_1 == "me")
     		game = Game.new(Players::Human.new('X'), Players::Computer.new('O'))
