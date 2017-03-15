@@ -1,3 +1,54 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+def start_game
+	player_num = ""
+	#def initialize(player_1 = Players::Human.new("X"), player_2 = Players::Human.new("O"), board = Board.new)
+	until player_num == "0" || player_num == "1" || player_num == "2" || player_num == "wargames"
+		puts "How many players? (0, 1, or 2)"
+		player_num = gets.strip
+
+		if player_num == "wargames"
+			game_count = 0
+			win_count = 0
+			100.times do 
+				game_count += 1
+				puts = "/n/nGame number #{game_count}."
+				game = Game.new(Players::Computer.new("X"), Players::Computer.new("O"), Board.new)
+				game.play
+				win_count +=1 if game.won?
+			end
+			puts "The game was won #{win_count} times."
+		elsif player_num == "0"
+			game = Game.new(Players::Computer.new("X"), Players::Computer.new("O"), Board.new)
+			game.play
+		elsif player_num == "1"
+			puts "Who will go first and be X? (me or computer)"
+			player_1 = gets.strip
+			if player_1 == "me"
+				game = Game.new(Players::Human.new("X"), Players::Computer.new("O"), Board.new)
+				game.play
+			elsif player_1 == "computer"
+				game = Game.new(Players::Computer.new("X"), Players::Human.new("O"), Board.new)
+				game.play
+			end
+		elsif player_num == "2"
+			game = Game.new
+			game.play
+		end
+	end
+end
+
+puts "Welcome to Tic Tac Toe!"
+start_game
+
+play_again = ""
+until play_again.downcase == "no" || play_again.downcase == "n"
+	puts "Would you like to play again? y/n"
+	play_again = gets.strip
+	start_game if play_again.downcase == "y" || play_again.downcase == "yes"
+end
+
+
+
