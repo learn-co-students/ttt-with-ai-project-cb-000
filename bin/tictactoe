@@ -1,3 +1,37 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+
+puts "....................  WELCOME TO TIC TAC TOE!  ........................"
+puts "\n"
+puts "this game may look trivial but the computer player is a smart opponent! "
+puts "\n"
+puts "\n"
+puts "\n"
+puts "How many players (0, 1, 2) :"
+input = gets.chomp
+
+  if input == "1"
+    game = Game.new(Players::Human.new("X"), Players::Computer.new("O"))
+    puts "Real people get to play first. Your token is X."
+    puts "---------------- Good luck! -------------------"
+
+  elsif input == "2"
+    game = Game.new(Players::Human.new("X"), Players::Human.new("O"))
+    puts "First player is X - Second player is O"
+    puts "------------ Good luck! --------------"
+
+  elsif input == "0"
+    game = Game.new(Players::Computer.new("X"), Players::Computer.new("O"))
+    puts "2 opponents of equal strenght!"
+    puts "-- Computer X vs Computer O --"
+
+  else
+  "Please enter a valid number (0, 1, 2)"
+  input = gets.chomp
+
+  end
+
+game.board.display
+game.play
