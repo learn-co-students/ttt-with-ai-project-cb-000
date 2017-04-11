@@ -81,13 +81,18 @@ class Game
       end
       self.board.update(move,self.current_player)
       self.board.display
-
-
-
-
-
     end
 
+    def play
+      while !self.over?
+        self.turn
+      end
+       if self.draw?
+         puts "Cat's Game!"
+       else
+      puts "Congratulations #{self.winner}!"
+       end
+    end
 
 
 end #end of Class
