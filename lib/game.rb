@@ -76,7 +76,7 @@ class Game
 
     def turn
       move = self.current_player.move(self.board)
-      if move == "exit"
+      if move == "reset"
         self.board.reset!
       else
       while !self.board.valid_move?(move)
