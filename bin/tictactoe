@@ -2,5 +2,14 @@
 
 require_relative '../config/environment'
 
-game = Game.new
-game.play
+
+puts "Welcome, Are you ready to play some Tic Tac Toe?, Great!"
+puts "How many players will there be?"
+input = gets.strip
+if input == "2"
+  game = Game.new
+  game.play
+elsif input == "1"
+   game = Game.new(player_1 = Players::Human.new("X"), player_2 = Players::Computer.new("O"), board = Board.new)
+   game.play
+ end

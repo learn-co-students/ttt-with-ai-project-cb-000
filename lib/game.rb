@@ -76,14 +76,19 @@ class Game
 
     def turn
       move = self.current_player.move(self.board)
+      if move == "exit"
+        self.board.reset!
+      else
       while !self.board.valid_move?(move)
         move = self.current_player.move(self.board)
       end
       self.board.update(move,self.current_player)
       self.board.display
     end
+    end
 
     def play
+
       while !self.over?
         self.turn
       end
@@ -93,6 +98,8 @@ class Game
       puts "Congratulations #{self.winner}!"
        end
     end
+
+
 
 
 end #end of Class
