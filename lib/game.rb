@@ -36,8 +36,7 @@ class Game
             position3 = self.board.cells[index3]
 
             if (position1 == "X" && position2 == "X" && position3 == "X") || (position1 == "O" && position2 == "O" && position3 == "O")
-                win = true
-                winArray
+                win = winArray
             end
         end #end of WIN_COMBINATIONS.each
         win
@@ -67,9 +66,9 @@ class Game
             winComb = won?
             winner = self.board.cells[winComb[0]]
               if winner == self.player_1.token
-                self.player_1
+                self.player_1.token
               else
-                self.player_2
+                self.player_2.token
               end
         end
 
