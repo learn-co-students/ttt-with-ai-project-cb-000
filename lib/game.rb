@@ -74,6 +74,20 @@ class Game
 
     end
 
+    def turn
+      move = self.current_player.move(self.board)
+      while !self.board.valid_move?(move)
+        move = self.current_player.move(self.board)
+      end
+      self.board.update(move,self.current_player)
+      self.board.display
+
+
+
+
+
+    end
+
 
 
 end #end of Class
