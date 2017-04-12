@@ -9,6 +9,7 @@ class Game
         @player_1 = player_1
         @player_2 = player_2
         @board = board
+        @player = []
     end
 
     def board
@@ -75,17 +76,53 @@ class Game
     end
 
     def turn
-      move = self.current_player.move(self.board)
-      if move == "reset"
-        self.board.reset!
-      else
-      while !self.board.valid_move?(move)
-        move = self.current_player.move(self.board)
+      if self.current_player.is_a?(Players::Human)
+          move = self.current_player.move(self.board)
+          if move == "reset"
+            self.board.reset!
+          else
+            while !self.board.valid_move?(move)
+              move = self.current_player.move(self.board)
+            end
+            self.board.update(move,self.current_player)
+            self.board.display
+            @player << move
+            length = @player.length
+            puts "#{@player[length-1]}"
+          end
+        elsif self.current_player.is_a?(Players::Computer)
+             length = @player.length
+             if @player[length - 1] = "5"
+               move =  "3" #self.current_player.move(self.board)
+               while !self.board.valid_move?(move)
+                 move = self.current_player.move(self.board)
+               end
+               self.board.update(move, self.current_player)
+               self.board.display
+             else
+               move = self.current_player.move(self.board)
+               while !self.board.valid_move?(move)
+                 move = self.current_player.move(self.board)
+               end
+               self.board.update(move,self.current_player)
+               self.board.display
+             end
+
+=begin
+          if move == "reset"
+            self.board.reset!
+          else
+            while !self.board.valid_move?(move)
+              move = self.current_player.move(self.board)
+            end
+            self.board.update(move,self.current_player)
+            self.board.display
+          end
+=end
+
+        end
       end
-      self.board.update(move,self.current_player)
-      self.board.display
-    end
-    end
+
 
     def play
 
