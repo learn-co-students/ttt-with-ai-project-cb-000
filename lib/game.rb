@@ -92,13 +92,29 @@ class Game
           end
         elsif self.current_player.is_a?(Players::Computer)
              length = @player.length
-             if @player[length - 1] = "5"
-               move =  "3" #self.current_player.move(self.board)
-               while !self.board.valid_move?(move)
-                 move = self.current_player.move(self.board)
-               end
+             case
+             when @player[length - 1] == "5"
+               possible = ["1","3","7","9"]
+                puts "case1"
+                possible.each do |num|
+                  if self.board.valid_move?(num)
+                    move = num
+                    break
+                  end
+                end
+              when !@player.include?(5)
+                move = "5"
+                puts "case2"
+              else
+                move = self.current_player.move(self.board)
+                while !self.board.valid_move?(move)
+                  move = self.current_player.move(self.board)
+                end
+
+             end
                self.board.update(move, self.current_player)
                self.board.display
+=begin
              else
                move = self.current_player.move(self.board)
                while !self.board.valid_move?(move)
@@ -107,7 +123,7 @@ class Game
                self.board.update(move,self.current_player)
                self.board.display
              end
-
+=end
 =begin
           if move == "reset"
             self.board.reset!
