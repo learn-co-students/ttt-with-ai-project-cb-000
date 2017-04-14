@@ -24,18 +24,21 @@ if input == "2"
 
 elsif input == "1"
 
-  puts "Who goes first, the computer or you?"
-  first = gets.downcase.strip
-  if first == "computer"
+  puts "Who goes first, 1 for the computer or 2 for you?"
+  first = gets.strip
+  if first != "1" && first != "2"
+    puts "Please enter a number to choose"
+  else
+  if first == "1"
 
     game = Game.new(player_1 = Players::Computer.new("X"), player_2 = Players::Human.new("O"), board = Board.new)
 
-  else
+  elsif first == "2"
 
     game = Game.new(player_1 = Players::Human.new("X"), player_2 = Players::Computer.new("O"), board = Board.new)
 
   end
-
+end
 
 
  elsif input == "0"
