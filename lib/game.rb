@@ -93,49 +93,7 @@ class Game
 
           end
         elsif self.current_player.is_a?(Players::Computer)
-=begin
-                if @computer.length == 0
-                  num = rand(1..10)
-                   while num == 2 || num == 4 || num == 6 || num == 8 || num == 5 || num == 0 || num == 10
-                     num = rand(1..10)
-                   end
-                   move = num
-                elsif @computer.length == 1 && @player.last == "5"
 
-                  if @computer.last == 1
-                    move = 9
-                  elsif @computer.last == 3
-                      move = 7
-                  elsif @computer.last == 7
-                      move = 3
-                  elsif @computer.last == 9
-                      move = 1
-                  end
-
-                elsif (@computer.length == 1) && (@player.last == "1" || @player.last == "3" || @player.last == "7" || @player.last == "9")
-                  num = rand(1..10)
-                   while (num == 2 || num == 4 || num == 6 || num == 8 || num == 5 || num == 0 || num == 10) && !self.board.valid_move?(num)
-
-                     num = rand(1..10)
-                   end
-                   move = num
-
-                elsif (@computer.length == 1) && (@player.last == "2" || @player.last == "4" || @player.last == "6" || @player.last == "8")
-                  num = rand(1..10)
-                   while (num == 2 || num == 4 || num == 6 || num == 8 || num == 5 || num == 0 || num == 10) && !self.board.valid_move?(num)
-
-                     num = rand(1..10)
-                   end
-                   move = num
-
-                elsif @computer.length == 2
-                  num = rand(1..10)
-                   while (num == 2 || num == 4 || num == 6 || num == 8 || num == 5 || num == 0 || num == 10) && !self.board.valid_move?(num)
-
-                     num = rand(1..10)
-                   end
-                   move = num
-=end
                 if @player.include?("1") && @player.include?("3") && self.board.valid_move?(2)
                     move = 2
                 elsif @player.include?("1") && @player.include?("7") && self.board.valid_move?(4)
@@ -185,17 +143,7 @@ class Game
                @computer << move.to_i
 
 
-=begin
-             else
-               move = self.current_player.move(self.board)
-               while !self.board.valid_move?(move)
-                 move = self.current_player.move(self.board)
-               end
-               self.board.update(move,self.current_player)
-               self.board.display
-             end
-=end
-=begin
+
           if move == "reset"
             self.board.reset!
           else
@@ -205,7 +153,7 @@ class Game
             self.board.update(move,self.current_player)
             self.board.display
           end
-=end
+
 
         end
     end
