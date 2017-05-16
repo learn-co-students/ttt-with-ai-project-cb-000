@@ -1,3 +1,18 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+
+input = nil
+until input == "exit"
+  puts "Welcome to TicTacToe!"
+  puts "Which game would you like to play: 0 player, 1 player, 2 player? (type exit to exit)"
+    input = gets.strip
+  if input == "0 player"
+    Game.new(player_1 = Computer.new("X"), player_2 = Computer.new("O")).play
+  elsif input == "1 player"
+    Game.new(player_1 = Human.new("X"), player_2 = Computer.new("O")).play
+  elsif input == "2 player"
+    Game.new.play
+  end
+end
