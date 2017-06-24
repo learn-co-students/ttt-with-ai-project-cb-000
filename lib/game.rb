@@ -3,7 +3,7 @@ class Game
   attr_reader :board
 
   def initialize(player1=Players::Human.new("X"), player2=Players::Human.new("O"), board=Board.new)
-    self.board=board
+    @board=board
     @player_1 = player1
     @player_2 = player2
   end
@@ -67,10 +67,7 @@ class Game
     end
   end
 
-  def start
-    puts "Hello, what kind of game would you like to play: 0, 1 or 2 players?"
-    answer = gets.strip
-  end
+
 
   WIN_COMBINATIONS = [
     [0,1,2],

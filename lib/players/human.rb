@@ -1,11 +1,10 @@
 module Players
 
   class Human < Player
-    attr_reader :token, :name
+    attr_reader :token
 
-    def initialize(token, name="Human Player")
+    def initialize(token)
       @token = token
-      @name = name
     end
 
     def move(arr)

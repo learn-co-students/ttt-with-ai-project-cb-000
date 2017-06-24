@@ -1,15 +1,14 @@
 module Players
 
   class Computer < Player
-    attr_reader :token, :name
+    attr_reader :token
 
-    def initialize(token, name="Computer Player")
+    def initialize(token)
       @token = token
-      @name = name
     end
 
     def move(board)
-      if board.cells.all?{|x| x==" "}
+      if board.turn_count == 1
         return "5"
       elsif board.turn_count.between?(2,5)
         corner = ["1","3","7","9"]
