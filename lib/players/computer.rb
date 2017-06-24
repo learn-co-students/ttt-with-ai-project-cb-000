@@ -8,7 +8,7 @@ module Players
     end
 
     def move(board)
-      if board.turn_count == 1
+      if board.cells.all?{|x| x == " "}
         return "5"
       elsif board.turn_count.between?(2,5)
         corner = ["1","3","7","9"]

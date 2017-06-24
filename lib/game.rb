@@ -46,7 +46,7 @@ class Game
   end
 
   def turn
-    index = self.current_player.move([])
+    index = self.current_player.move(@board)
     if @board.valid_move?(index)
       @board.update(index, self.current_player)
     else
