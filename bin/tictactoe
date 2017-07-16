@@ -1,3 +1,10 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+  puts "Welcome to Tic Tac Toe!  Now with AI!"
+  puts "This version starts a default game.  Heeeere weeee goooo!"
+  # gets "What kind of game do you want to play? (0,1,2)"
+  # game_type = gets "What kind of game do you want to play? (0,1,2)"
+  # player_1 = gets "Who should go first and be X?"
+  game = Game.new
+  game.play
