@@ -3,7 +3,7 @@ class Board
   attr_accessor :cells
 
   def initialize
-    # @cells = Array.new(9, " ")
+    
     self.reset!
   end
 
@@ -22,19 +22,17 @@ class Board
   end
 
   def position(str) ##input strings 1-9
-    #returns value of cell
-    # @cells[str.to_i-1]
+
     @cells[str.to_i-1]
   end
 
   def full?
-    # binding.pry
+
     !(@cells.include? (" "))
   end
 
   def turn_count
-    #look at cell values, and count all X and O
-    # binding.pry
+
     moves = @cells.find_all {|i| i == "O" || i == "X"}
     moves.size
   end

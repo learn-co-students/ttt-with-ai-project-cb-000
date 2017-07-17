@@ -1,10 +1,49 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
-  puts "Welcome to Tic Tac Toe!  Now with AI!"
-  puts "This version starts a default game.  Heeeere weeee goooo!"
-  # gets "What kind of game do you want to play? (0,1,2)"
-  # game_type = gets "What kind of game do you want to play? (0,1,2)"
-  # player_1 = gets "Who should go first and be X?"
-  game = Game.new
+def start
+  puts "Welcome to Tic Tac Toe,  Now with AI!"
+  puts "Please enter number of human players (0, 1, 2)"
+  player_count = gets.strip
+
+  if player_count == "0"
+    puts "Computer vs Computer!"
+    first_player = Players::Computer.new("X")
+    second_player = Players::Computer.new("O")
+    board = Board.new
+  elsif player_count == "1"
+    puts "Human vs Computer!"
+    puts "Who should go first and be X? (1 for Human)"
+    user_choice = gets.strip
+    if user_choice == "1"
+      first_player = Players::Human.new("X")
+      second_player = Players::Computer.new("O")
+      board = Board.new
+    else
+      second_player = Players::Human.new("X")
+      first_player = Players::Computer.new("O")
+      board = Board.new
+    end
+  elsif player_count == "2"
+    "Human vs Human"
+    first_player = Players::Human.new("X")
+    second_player = Players::Human.new("O")
+    board = Board.new
+  else
+    puts "Thats a weird number of players! Goodbye"
+    exit
+  end
+  game = Game.new(first_player, second_player, board)
+# game = Game.new(Players::Computer.new("X"), Players::Computer.new("O"), Board.new)
   game.play
+  puts "would you like to play again? (yes or exit)"
+  next_game = gets.strip
+  if next_game == "yes"
+    start
+  else
+    puts "Thats it"
+    exit
+  end
+end
+
+start

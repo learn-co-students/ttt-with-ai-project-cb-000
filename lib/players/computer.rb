@@ -3,7 +3,7 @@ module Players
   class Computer < Player
 
     def move(board)
-      #if 5 is available, play 5
+
       if board.valid_move?(5)
       "5"
       elsif board.valid_move?(1)
