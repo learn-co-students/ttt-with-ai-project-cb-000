@@ -22,13 +22,11 @@ class Board
   attr_accessor :cells
 
   def initialize
-    @cells = []
     reset!
   end
 
   def reset!
-    self.cells.clear
-    self.cells = Array.new(9, ' ')
+    @cells = Array.new(9, ' ')
   end
 
   def display
