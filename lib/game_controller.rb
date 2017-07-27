@@ -47,8 +47,27 @@ class GameController
   end
 
   def two_player
-    # TODO
-    puts 'Two player Game'
+    start = go_first?
+    player = pick_player
+
+    if (start && player || !start && !player)
+      player_1 = Players::Human.new('X')
+      player_2 = Players::Human.new('O')
+    else
+      player_1 = Players::Human.new('O')
+      player_2 = Players::Human.new('X')
+    # elsif start && !player
+    #   player_1 = Players::Human.new('O')
+    #   player_2 = Players::Human.new('X')
+    # elsif !start && player
+    #   player_1 = Players::Human.new('O')
+    #   player_2 = Players::Human.new('X')
+    # elsif !start && !player
+    #   player_1 = Players::Human.new('X')
+    #   player_2 = Players::Human.new('O')
+    end
+    # launch the Game
+    Game.new(player_1, player_2).play
   end
 
   def demo
