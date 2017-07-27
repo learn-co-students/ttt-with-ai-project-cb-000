@@ -10,7 +10,7 @@ class Game
     @board = board || Board.new
   end
 
-  # assuming that 'X' goes first
+  # assuming that Player 1 goes first
   def current_player
     (self.board.cells.count {|val| val == 'X' || val == 'O'}.even?)? self.player_1 : self.player_2
   end
@@ -30,7 +30,7 @@ class Game
   end
 
   def winner
-    (winner?(player_positions(self.player_1)))? 'X': (winner?(player_positions(self.player_2)))? 'O': nil
+    (winner?(player_positions(self.player_1)))? self.player_1.token : (winner?(player_positions(self.player_2)))? self.player_2.token : nil
   end
 
   def turn
@@ -38,6 +38,10 @@ class Game
     next_move = current_player.move(self.board)
     if self.board.valid_move?(next_move)
       self.board.update(next_move, current_player)
+      puts "Player #{current_player.token} makes a move"
+      puts '---------------------'
+      self.board.display
+      puts
     else
       turn
     end
@@ -48,6 +52,7 @@ class Game
       self.turn
     end
     puts (self.won?)? "Congratulations #{self.winner}!" : 'Cat\'s Game!'
+    puts
   end
 
   private # helper methods

@@ -16,7 +16,6 @@ Board methods:
   #valid_move?  - ensure input is > 0
 
 =end
-require 'pry'
 
 class Board
   attr_accessor :cells
@@ -67,5 +66,3 @@ class Board
   end
 
 end
-
-# binding.pry
