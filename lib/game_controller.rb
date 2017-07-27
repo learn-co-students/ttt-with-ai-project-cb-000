@@ -52,8 +52,12 @@ class GameController
   end
 
   def demo
-    # TODO
     puts 'Demo Game!'
+    if Random.new.rand(2) == 1
+      Game.new(Players::Computer.new('X'), Players::Computer.new('O')).play_demo
+    else
+      Game.new(Players::Computer.new('O'), Players::Computer.new('X')).play_demo
+    end
   end
 
   private

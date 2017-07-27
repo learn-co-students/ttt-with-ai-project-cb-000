@@ -55,6 +55,15 @@ class Game
     puts
   end
 
+  def play_demo
+    until self.won? || self.draw?
+      sleep(1)
+      self.turn
+    end
+    puts (self.won?)? "Congratulations #{self.winner}!" : 'Cat\'s Game!'
+    puts
+  end
+
   private # helper methods
   def winner?(player_positions)
     WIN_COMBINATIONS.detect do |combination|
