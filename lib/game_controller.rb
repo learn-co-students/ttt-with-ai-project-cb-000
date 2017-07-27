@@ -56,15 +56,6 @@ class GameController
     else
       player_1 = Players::Human.new('O')
       player_2 = Players::Human.new('X')
-    # elsif start && !player
-    #   player_1 = Players::Human.new('O')
-    #   player_2 = Players::Human.new('X')
-    # elsif !start && player
-    #   player_1 = Players::Human.new('O')
-    #   player_2 = Players::Human.new('X')
-    # elsif !start && !player
-    #   player_1 = Players::Human.new('X')
-    #   player_2 = Players::Human.new('O')
     end
     # launch the Game
     Game.new(player_1, player_2).play
