@@ -54,7 +54,7 @@ def start
     puts "There were #{draws} draws."
 
   else
-    puts "Please enter 0, 1, or 2 (or !):"
+    puts "Please enter 0, 1, 2, or 9:"
     start
   end
 end
