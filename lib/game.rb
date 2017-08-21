@@ -59,4 +59,19 @@ class Game
     WIN_COMBINATIONS
   end
 
+
+  def turn_war_games
+    current_move = current_player.move(board)
+
+    if board.valid_move?(current_move)
+      board.update(current_move, current_player)
+    else
+      turn
+    end
+  end
+
+  def play_war_games
+    turn_war_games until over?
+  end
+
 end

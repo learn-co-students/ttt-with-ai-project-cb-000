@@ -3,7 +3,7 @@
 require_relative '../config/environment'
 
 puts "Welcome to Tic Tac Toe!"
-puts "Would you like to play with 0, 1, or 2 players?"
+puts "Would you like to play with 0, 1, or 2 players? (Or type 9 for war games.)"
 
 def start
   game_type = gets.chomp.to_i
@@ -31,8 +31,30 @@ def start
   elsif game_type == 2
     Game.new(player_1 = Players::Human.new("X"), player_2 = Players::Human.new("O"), board = Board.new).play
 
+  elsif game_type == 9
+    x_wins = 0
+    o_wins = 0
+    draws = 0
+
+    50.times do
+      new_game = Game.new(Players::Computer.new("X"), Players::Computer.new("O"), board = Board.new)
+      new_game.play_war_games
+      if new_game.draw?
+        draws += 1
+      elsif new_game.winner == "X"
+        x_wins += 1
+      else
+        o_wins += 1
+      end
+    end
+
+    puts "Final tally:"
+    puts "X won #{x_wins} times."
+    puts "O won #{o_wins} times."
+    puts "There were #{draws} draws."
+
   else
-    puts "Please enter 0, 1, or 2:"
+    puts "Please enter 0, 1, or 2 (or !):"
     start
   end
 end
