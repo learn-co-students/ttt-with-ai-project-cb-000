@@ -10,12 +10,11 @@ module Players
         win_for_me
       elsif win_for_them
         win_for_them
-
-      elsif board.valid_move?("7")
+      elsif board.valid_move?("7") && board.cells[0] != " " && board.cells[2] != " " && board.cells[8] != " "
         "7"
-      elsif board.valid_move?("5") && board.position("7") != self.token
+      elsif board.valid_move?("5")
         "5"
-      elsif board.valid_move?("3")
+      elsif board.valid_move?("3") && board.cells[0] != other_token && board.cells[2] != other_token && board.cells[8] != other_token
         "3"
       elsif board.turn_count == 4
         valid_random_edge
