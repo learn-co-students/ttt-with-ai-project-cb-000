@@ -151,14 +151,14 @@ describe 'Game' do
   describe '#winner' do
     it 'returns X when X won' do
       game = Game.new
-      game.board.cells = ["X", " ", " ", " ", "X", " ", " ", " ", "X"]
+      game.board.cells = ["X", " ", " ", " ", "X", " ", " ", "", "X"]
 
       expect(game.winner).to eq("X")
     end
 
     it 'returns O when O won' do
       game = Game.new
-      game.board.cells = ["X", "O", " ", " ", "O", " ", " ", "O", "X"]
+      game.board.cells = ["X", "O", "X", " ", "O", " ", " ", "O", "X"]
 
       expect(game.winner).to eq("O")
     end
@@ -297,7 +297,7 @@ describe 'Game' do
 
     it 'congratulates the winner O' do
       game = Game.new
-      game.board.cells = [" ", " ", " ", " ", " ", " ", "O", "O", "O"]
+      game.board.cells = [" ", " ", "X", " ", " ", " ", "O", "O", "O"]
 
       allow($stdout).to receive(:puts)
 

@@ -1,3 +1,18 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+puts "Welcome to the next Tic! Tac! Toe! Game!"
+puts "How many will be playing? 0, 1, or 2?"
+playerNum = gets.strip
+if playerNum == 1
+  "Which piece would you like to play, X or O? Remember, X goes first."
+  token = gets.strip
+  game = Game.new(Human.new("#{token}"))
+end
+if playerNum = 0
+  game.player_1 = Computer.new("X")
+  game.player_2 = Computer.new("O")
+end
+puts "Let's begin!"
+game.play
