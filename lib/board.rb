@@ -51,8 +51,6 @@ class Board
   end
 
   def update(pos, player)
-    # binding.pry
-
     pos_sanitized = pos.to_i - 1
     cells[pos_sanitized] = player.token
   end

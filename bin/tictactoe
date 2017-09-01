@@ -1,13 +1,8 @@
 #!/usr/bin/env ruby
 
-require 'pry'
 require_relative '../config/environment'
 
-game = Game.new(Players::Human.new('X'), Players::Human.new('O'), Board.new)
+game = Game.new(Players::Human.new('X'), Players::Computer.new('O'), Board.new)
 
-
-game.board.display
-binding.pry
+# binding.pry
 game.play
-
-game.board.display
