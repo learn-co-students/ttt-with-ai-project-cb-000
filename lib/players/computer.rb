@@ -39,7 +39,7 @@ module Players
         if board.cells[pos]== " "
           board.cells[pos] =  @token
           value = min(board, depth, - INFINITY, INFINITY)
-          puts "#{pos} : #{value}"
+          # puts "#{pos} : #{value}"
 
           if value > bestValue
             bestValue = value
