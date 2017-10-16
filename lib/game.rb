@@ -89,5 +89,43 @@ class Game
     end
   end
 
+  def start
+    input = ""
+    while input != "exit"
+      puts "Welcome to Tic Tac Toe!"
+      puts "How many players will be playing? Enter: 0, 1, or 2"
+      input = gets.strip
+      case input
+      when "0"
+        Game.new(player_1 = Players::Computer.new("X"), player_2 = Players::Computer.new("O"), board = Board.new).play
+        puts "Would you like to play again? Enter: 'yes', or 'exit'"
+        input = gets.strip
+        if input == "yes || Yes || YES"
+          self.start
+        end
 
+      when "1"
+        puts "You will be player 1 and go first, as X"
+        Game.new.board.display
+        Game.new(player_1 = Players::Human.new("X"), player_2 = Players::Computer.new("O"), board = Board.new).play
+        puts "Would you like to play again? Enter: 'yes', or 'exit'"
+        input = gets.strip
+        if input == "yes || Yes || YES"
+          self.start
+        end
+
+      when "2"
+        puts "Decide who will go first and be X, then begin!"
+        Game.new.board.display
+        self.play
+        puts "Would you like to play again? Enter: 'yes', or 'exit'"
+        input = gets.strip
+        if input == "yes || Yes || YES"
+          self.start
+        end
+      end
+    end
+  end
+
+# end of "Game" class
 end
