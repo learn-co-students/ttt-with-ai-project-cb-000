@@ -1,3 +1,72 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+puts "Hi there! Welcome to new and improved Ruby CLI Tic-Tac-Toe, now with AI!"
+puts "The game board has cells which are numbered 1 - 9. Type in a number to"
+puts "place your token. Example:"
+puts ""
+puts " 1 | 2 | 3 "
+puts "-----------"
+puts " 4 | 5 | 6 "
+puts "-----------"
+puts " 7 | 8 | 9 "
+puts ""
+puts "Please select a game mode:"
+puts ""
+puts "1) Single-Player"
+puts "2) Multi-Player"
+puts "3) AI Versus AI"
+puts "4) Wargames Mode: See if the computer can best itself!"
+
+user_input = gets.strip
+
+game = Game.new() if user_input == "2"
+game = Game.new(Players::Computer.new("X"), Players::Computer.new("O"), Board.new) if user_input == "3"
+
+if user_input == "1"
+puts "Who should go first? Type 'Me' to go first. Type 'Computer' to have the computer go first:"
+selection = gets.strip
+  if selection == "Me"
+    game = Game.new(Players::Human.new("X"), Players::Computer.new("O"), Board.new)
+    puts "The game starts with player 'X'. Have fun!!!"
+    game.play
+  elsif selection == "Computer"
+    game = Game.new(Players::Computer.new("X"), Players::Human.new("O"), Board.new)
+    puts "The game starts with player 'X'. Have fun!!!"
+    game.play
+  else
+    puts "Uh-oh! Looks like you made an invalid selection! ¯\\_(°_o)_/¯"
+    puts "We'll just let you go first."
+    puts "The game starts with player 'X'. Have fun!!!"
+    game = Game.new(Players::Human.new("X"), Players::Computer.new("O"), Board.new)
+    game.play
+  end
+elsif user_input == "2"
+  game = Game.new()
+  puts "The game starts with player 'X'. Have fun!!!"
+  game.play
+elsif user_input == "3"
+  game = Game.new(Players::Computer.new("X"), Players::Computer.new("O"), Board.new)
+  game.play
+end
+
+puts "The game starts with player 'X'. Have fun!!!"
+
+puts "Thanks for playing! 〈( ^.^)ノ   ┗(｀ー´)┓    ┏(＾0＾)┛  ヾ(ﾟ∀ﾟゞ)"
+
+if user_input == "4"
+  x = 0
+  o = 0
+  100.times do
+    game = Game.new(Players::Computer.new("X"), Players::Computer.new("O"), Board.new)
+    game.play
+    if game.winner == "X"
+      x += 1
+    elsif game.winner == "O"
+      o += 1
+    end
+  end
+  puts "X won #{x} times."
+  puts "O won #{o} times."
+end
