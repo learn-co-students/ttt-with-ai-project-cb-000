@@ -1,3 +1,62 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+# b = Board.new
+# c = Players::Computer.new("X")
+# d = Players::Computer.new("O")
+# b.cells = ["X", "X", "O",
+#            "O", "X", " ",
+#            "O", " ", " "]
+#
+# binding.pry
+
+
+
+humanX = Players::Human.new("X")
+humanO = Players::Human.new("O")
+computerX = Players::Computer.new("X")
+computerO = Players::Computer.new("O")
+
+puts "Welcome to Tic Tac Toe!"
+game = Game.new(humanX, humanO)
+input = ""
+until input == "4"
+  case input
+  when "3"
+    game.board.reset!
+    game.player_1 = computerX
+    game.player_2 = computerO
+    game.play
+  when "2"
+    game.board.reset!
+    game.player_1 = humanX
+    game.player_2 = humanO
+    game.play
+  when "1"
+    game.board.reset!
+    first = ""
+    until first == "1" || first == "2"
+      puts "Please choose who should go first and be \"X\", input the number:"
+      puts "1 : player"
+      puts "2 : computer"
+      first = gets.strip
+    end
+    if first == "1"
+      game.player_1 = humanX
+      game.player_2 = computerO
+      game.play
+    else
+      game.player_1 = computerX
+      game.player_2 = humanO
+      game.play
+    end
+  end
+  puts "Please choose what you want and input the number:"
+  puts "1 : one player VS computer"
+  puts "2 : two players"
+  puts "3 : computer vs computer"
+  puts "4 : exit"
+  input = gets.strip
+end
+
+puts "Goodbye!"
