@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pry'
 
 describe "Board" do
   let(:board){Board.new}
@@ -78,7 +79,7 @@ describe "Board" do
 
     it 'returns false for an in-progress game' do
       board.cells = ["X", " ", "X", " ", "X", " ", "O", "O", " "]
-
+      # binding.pry
       expect(board.full?).to be_falsey
     end
   end
