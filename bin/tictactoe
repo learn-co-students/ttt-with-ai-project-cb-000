@@ -1,3 +1,70 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+
+puts "Welcome, Are you ready to play some Tic Tac Toe?, Great!"
+
+def start_game
+puts "How many players will there be?"
+input = gets.strip
+if input == "2"
+  puts "Who goes first, X or O?"
+  first = gets.upcase.strip
+  if first == "X"
+    second = "O"
+    game = Game.new(player_1 = Players::Human.new(first), player_2 = Players::Human.new(second), board = Board.new)
+
+  else
+    second = "X"
+    first = "O"
+    game = Game.new(player_1 = Players::Human.new(first), player_2 = Players::Human.new(second), board = Board.new)
+
+  end
+
+elsif input == "1"
+
+  puts "Who goes first, 1 for the computer or 2 for you?"
+  first = gets.strip
+  if first != "1" && first != "2"
+    puts "Please enter a number to choose"
+  else
+  if first == "1"
+
+    game = Game.new(player_1 = Players::Computer.new("X"), player_2 = Players::Human.new("O"), board = Board.new)
+
+  elsif first == "2"
+
+    game = Game.new(player_1 = Players::Human.new("X"), player_2 = Players::Computer.new("O"), board = Board.new)
+
+  end
+end
+
+
+ elsif input == "0"
+   puts "Who goes first, X or O?"
+   first = gets.upcase.strip
+   if first == "X"
+     second = "O"
+     game = Game.new(player_1 = Players::Computer.new(first), player_2 = Players::Computer.new(second), board = Board.new)
+
+   else
+     second = "X"
+     first = "O"
+     game = Game.new(player_1 = Players::Computer.new(first), player_2 = Players::Computer.new(second), board = Board.new)
+
+   end
+
+ end
+
+
+game.play
+puts "Game Over!"
+puts "Would you like to play again?"
+input = gets.strip
+if input.upcase == "YES"
+  start_game
+end
+
+end
+start_game
