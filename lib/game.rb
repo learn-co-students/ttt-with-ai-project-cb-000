@@ -35,9 +35,11 @@ class Game
   end
 
   def turn
+    puts "Now it's #{current_player.token}'s turn"
     choice = current_player.move(board)
     turn if !board.valid_move?(choice)
     board.update(choice, current_player)
+    board.display
     choice
   end
 
