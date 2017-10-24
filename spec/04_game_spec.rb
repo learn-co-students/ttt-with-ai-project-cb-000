@@ -55,7 +55,6 @@ describe 'Game' do
 
     it 'defaults to two human players, X and O, with an empty board' do
       game = Game.new
-
       expect(game.player_1).to be_a(Players::Human)
       expect(game.player_1.token).to eq("X")
 
@@ -208,7 +207,6 @@ describe 'Game' do
       game = Game.new
       allow($stdout).to receive(:puts)
       allow(game).to receive(:over?).and_return(false, true)
-
       expect(game.player_1).to receive(:gets).at_least(:once).and_return("1")
 
       game.play
@@ -221,7 +219,6 @@ describe 'Game' do
       allow(game.player_2).to receive(:gets).and_return("4", "5")
 
       expect(game).to receive(:over?).at_least(:twice).and_return(false, false, true)
-
       game.play
     end
 
