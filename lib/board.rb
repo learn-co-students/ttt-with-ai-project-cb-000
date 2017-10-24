@@ -38,6 +38,11 @@ class Board
     return true if num.to_i.between?(1,9) && !taken?(num)
   end
 
+  def valid_moves
+    array = [1,2,3,4,5,6,7,8,9]
+    array.select { |pos| self.cells[pos - 1] == " "}.map { |elem| "#{elem}" }
+  end
+
   def update(num, player)
     self.cells[num.to_i - 1] = player.token
   end
