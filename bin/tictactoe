@@ -2,21 +2,27 @@
 
 require_relative '../config/environment'
 
-puts "Welcome to Tic Tac Toe!"
-
-choice = nil
 loop do
-  puts "How many human players would you like? (0, 1, or 2)"
-  choice = gets.chomp.to_i
-  break if [0,1,2].include?(choice)
-end
+  puts "Welcome to Tic Tac Toe!"
 
-if choice == 2
-  game = Game.new
-elsif choice == 0
-  game = Game.new(player1=Players::Computer.new("X"), player2=Players::Computer.new("O"), board=Board.new)
-else
-  game = Game.new(player1=Players::Human.new("X"), player2=Players::Computer.new("O"), board=Board.new)
-end
+  choice = nil
+  loop do
+    puts "How many human players would you like? (0, 1, or 2)"
+    choice = gets.chomp.to_i
+    break if [0,1,2].include?(choice)
+  end
 
-game.play
+  if choice == 2
+    game = Game.new
+  elsif choice == 0
+    game = Game.new(player1=Players::Computer.new("X"), player2=Players::Computer.new("O"), board=Board.new)
+  else
+    game = Game.new(player1=Players::Human.new("X"), player2=Players::Computer.new("O"), board=Board.new)
+  end
+
+  game.play
+  puts " "
+  puts "Would you like to play again? (y/N)"
+  choice = gets.chomp
+  break if !['y','Y','Yes','yes'].include?(choice)
+end
