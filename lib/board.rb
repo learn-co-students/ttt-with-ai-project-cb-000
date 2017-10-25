@@ -48,4 +48,22 @@ class Board
   def update(num, player)
     self.cells[num.to_i - 1] = player.token
   end
+
+  def empty_corner_cells
+    array = [0,2,6,8]
+    array.select { |sq| cells[sq] == " " }.map { |sq| (sq + 1).to_s }
+  end
+
+  def winning_move(player)
+    Game::WIN_COMBINATIONS.each do |arr|
+      result = [self.cells[arr[0]], self.cells[arr[1]], self.cells[arr[2]]]
+        if result.count(player.token) == 2 && result.include?(" ")
+          return (arr[0] + 1).to_s if self.cells[arr[0]] == " "
+          return (arr[1] + 1).to_s if self.cells[arr[1]] == " "
+          return (arr[2] + 1).to_s if self.cells[arr[2]] == " "
+        end
+    end
+    nil
+  end
+
 end
