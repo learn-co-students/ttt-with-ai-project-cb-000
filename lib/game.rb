@@ -30,7 +30,7 @@ class Game
     end
 
     def over?
-        !board.cells.include?(" ")
+        won? || draw?
     end
 
     def won?
@@ -40,7 +40,7 @@ class Game
     end
 
     def draw?
-        over? && !won?
+        !board.cells.include?(" ") && !won?
     end
 
     def winner
