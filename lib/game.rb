@@ -45,7 +45,7 @@ class Game
 
   def turn
     puts "Please enter 1-9:"
-    pos = (1-9).to_s.sample
+    pos = (1-9).to_s.sample ### CHANGE TO 'pos = gets'
     if (@board.valid_move?(pos))
       @board.update(pos, current_player)
       @board.display
