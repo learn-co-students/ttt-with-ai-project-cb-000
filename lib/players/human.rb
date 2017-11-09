@@ -1,6 +1,7 @@
 module Players
   class Human < Player
     def initialize(board)
+      super
     end
 
     def move(board)

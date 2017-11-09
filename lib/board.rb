@@ -1,7 +1,7 @@
  class Board
 
-  def initialize(cells = nil)
-    @cells = cells || Array.new(9, " ")
+  def initialize(cells = Array.new(9, " "))
+    @cells = cells
     puts "Welcome to TicTacToe!"
     display
   end
@@ -17,6 +17,7 @@
     turn_count % 2 == 0 ? "X" : "O"
   end
 
+
   def turn_count
     @cells.count{|token| token == "X" || token == "O"}
   end
@@ -30,7 +31,7 @@
   end
 
   def taken?(pos)
-    !(@cells[input_to_index(pos)].nil? || @cells[input_to_index(pos)] == " ")
+    (@cells[input_to_index(pos)] != " ")
   end
 
 

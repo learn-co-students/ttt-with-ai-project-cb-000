@@ -1,9 +1,9 @@
 class Game
 
-  def initialize(player_1 = Players::Human.new("X"),player_2 = Players::Human.new("O"),board = Array.new(9, " "))
+  def initialize(player_1 = Players::Human.new("X"), player_2 = Players::Human.new("O"), board = Board.new)
     @board = board
-    @player_1 = player_1 
-    @player_2 = player_2 
+    @player_1 = player_1
+    @player_2 = player_2
   end
 
   attr_accessor :board, :player_1, :player_2
@@ -24,7 +24,7 @@ class Game
   end
 
   def draw?
-    board.full? && !won?
+    @board.full? && !won?
   end
 
   def over?
@@ -32,31 +32,31 @@ class Game
   end
 
   def current_player
-    board.turn_count % 2 == 0 ? "X" : "O"
+    @board.turn_count % 2 == 0 ? @player_1 : @player_2
   end
 
   def winner
     if line = won?
-      return board.cells[line[0]]
-    else return nil
+      return @board.cells[line[0]]
+    else
+      return nil
+    end
+  end
+
+  def turn
+    puts "Please enter 1-9:"
+    pos = (1-9).to_s.sample
+    if (@board.valid_move?(pos))
+      @board.update(pos, current_player)
+      @board.display
+    else
+      turn
     end
   end
 
   def play
-    i = 1
-    while (i <= 9) do
-      if (!over?)   #This is completely uneeded, except to pass the tests. :-(
-        position
-      end
-      if (won?)
-        puts "Congratulations #{winner}!"
-        return
-      elsif (draw?)
-        puts "Cat's Game!"
-        return
-      end
-      i += 1
-    end
+    while !over? do turn end
+    won? ? (puts "Congratulations #{winner}!") : (puts "Cat's Game!")
   end
 
 end
