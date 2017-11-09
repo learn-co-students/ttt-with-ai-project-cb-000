@@ -1,27 +1,11 @@
- class Board
-
-  def initialize(cells = Array.new(9, " "))
-    @cells = cells
-    puts "Welcome to TicTacToe!"
-    display
-  end
-
+class Board
   attr_accessor :cells
-
-  def full?
-    !@cells.include?(" ")
+  def initialize
+    @cells = Array.new(9," ")
   end
-
-
-  def current_player
-    turn_count % 2 == 0 ? "X" : "O"
+  def reset!
+    @cells = Array.new(9," ")
   end
-
-
-  def turn_count
-    @cells.count{|token| token == "X" || token == "O"}
-  end
-
   def display
     puts " #{@cells[0]} | #{@cells[1]} | #{@cells[2]} "
     puts "-----------"
@@ -29,36 +13,27 @@
     puts "-----------"
     puts " #{@cells[6]} | #{@cells[7]} | #{@cells[8]} "
   end
-
-  def taken?(pos)
-    (@cells[input_to_index(pos)] != " ")
+  def position(input)
+    @cells[input.to_i-1]
   end
-
-
-  def input_to_index(user_input)
-    user_input.to_i - 1
+  def full?
+    @cells.all? { |token| token == "X" || token == "O" }
   end
-
-  def update(pos, current_player)
-    @cells[input_to_index(pos)] = current_player.token
+  def turn_count
+    @cells.count{|token| token == "X" || token == "O"}
   end
-
-  def valid_move?(pos)
-    pos.to_i.between?(1,9) && !taken?(pos)
+  def taken?(index)
+    !(@cells[index.to_i-1].nil? || @cells[index.to_i-1] == " ")
   end
-
-  def position(pos)
-    @cells[input_to_index(pos)]
-#    if valid_move?(index)
-#      update(index, current_player)
-#      display
-#    else
-#      position
-#    end
+  def valid_move?(index)
+    index = index.to_i
+    if index.is_a? Integer
+      index.between?(1,9) && !taken?(index)
+    else
+      false
+    end
   end
-
-  def reset!
-    @cells = Array.new(9, " ")
+  def update(index,player)
+    @cells[index.to_i-1] = player.token
   end
-
 end

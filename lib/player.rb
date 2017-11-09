@@ -1,7 +1,11 @@
 class Player
+  attr_reader :token
   def initialize(token)
     @token = token
   end
-
-  attr_reader :token
+  def move(board)
+    puts "Enter 1-9:"
+    input = gets
+    input
+  end
 end
