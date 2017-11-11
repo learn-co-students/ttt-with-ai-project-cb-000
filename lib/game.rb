@@ -108,8 +108,9 @@ class Game
     go = player.move(board)
     if board.valid_move?(go)
       board.update(go, player)
-      self.board
+      self.board.display
     else
+      puts "Position Taken"
       self.turn
     end
   end
