@@ -108,6 +108,7 @@ class Game
     go = player.move(board)
     if board.valid_move?(go)
       board.update(go, player)
+      puts "Tic-Tac-Toe Board:"
       self.board.display
     else
       puts "Position Taken"
