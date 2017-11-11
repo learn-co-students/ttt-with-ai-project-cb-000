@@ -7,6 +7,7 @@ module Players
       return self.valid_moves.sample
     end
 
+
     def valid_moves
       @@valid_moves
     end
