@@ -25,9 +25,12 @@
   end
 
   def taken?(pos)
-    (@cells[input_to_index(pos)] == "X" || @cells[input_to_index(pos)] == "O")
+    @cells[input_to_index(pos)] != " "
   end
 
+  def valid_move?(pos)
+    pos.to_i.between?(1,9) && !taken?(pos)
+  end
 
   def input_to_index(user_input)
     user_input.to_i - 1
@@ -35,10 +38,6 @@
 
   def update(pos, current_player)
     @cells[input_to_index(pos)] = current_player.token
-  end
-
-  def valid_move?(pos)
-    pos.to_i.between?(1,9) && !taken?(pos)
   end
 
   def position(pos)
