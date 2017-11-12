@@ -49,5 +49,31 @@ class Game
     while !over? do turn end
     won? ? (puts "Congratulations #{winner}!") : (puts "Cat's Game!")
   end
+  def self.start
+    puts "Welcome to Tic Tac Toe!"
+    loop do
+      puts "What kind of game would you like to play?"
+      puts "0 - computer vs computer"
+      puts "1 - human vs computer"
+      puts "2 - human vs human"
+      puts "Type exit to quit!"
+      type_of_game = gets.strip
+
+      break if type_of_game == "exit"
+      game = Game.new(Players::Computer.new("X"),Players::Computer.new("O")) if type_of_game == "0"
+      if type_of_game == "1"
+        puts "Who should go first? 1 - Computer |-|-| 2 - Human?"
+            go_first = gets.strip
+            if go_first == "1"
+              game = Game.new(Players::Computer.new("X"), Players::Human.new("O"))
+            else
+              game = Game.new(Players::Human.new("X"), Players::Computer.new("O"))
+            end
+      end
+      game = Game.new if type_of_game == "2"
+      game.play
+    end
+  end
+
 
 end
