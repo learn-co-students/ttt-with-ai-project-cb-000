@@ -12,12 +12,6 @@
     !@cells.include?(" ")
   end
 
-
-  def current_player
-    turn_count % 2 == 0 ? "X" : "O"
-  end
-
-
   def turn_count
     @cells.count{|token| token == "X" || token == "O"}
   end
@@ -31,7 +25,7 @@
   end
 
   def taken?(pos)
-    (@cells[input_to_index(pos)] != " ")
+    (@cells[input_to_index(pos)] == "X" || @cells[input_to_index(pos)] == "O")
   end
 
 
@@ -49,12 +43,6 @@
 
   def position(pos)
     @cells[input_to_index(pos)]
-#    if valid_move?(index)
-#      update(index, current_player)
-#      display
-#    else
-#      position
-#    end
   end
 
   def reset!
