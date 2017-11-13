@@ -19,12 +19,12 @@ module Players
     end
 
     def move(board)
-      if false && my_move = win_move?(board,@token) #Take te win
+      if my_move = win_move?(board,@token) #Take te win
         (my_move+1).to_s
-      elsif false && my_move = win_move?(board,@opponent) #Block opponent's win
+      elsif my_move = win_move?(board,@opponent) #Block opponent's win
         (my_move+1).to_s
       else
-        (valid_moves(board).sample+1).to_s #Convert to Human understandable positions
+        valid_moves(board).map{|e| e+1}.sample.to_s #Convert to Human understandable positions
       end
     end
 
@@ -35,10 +35,21 @@ module Players
 
     def win_move?(board, token)
       temp_cells = board.cells
-      valid_moves(board).detect do |indx|
+      valid_moves(board).detect do |indx| #See if we can find a move that will win for token
         temp_cells[indx] = "#{token}"
-        WIN_COMBINATIONS.detect {|line| line.all? {|i| temp_cells[i] == token}}
+        win = WIN_COMBINATIONS.detect {|line| line.all? {|i| temp_cells[i] == token}; }
         temp_cells[indx] = " "
+        win
+      end
+    end
+
+    def trap_move(board, token)
+      temp_cells = board.cells
+      valid_moves(board).detect do |indx| #See if we can find a 2way trap move for token
+        temp_cells[indx] = "#{token}"
+        my_trap = WIN_COMBINATIONS.detect {|line| line.all? {|i| temp_cells[i] == token}; }
+        temp_cells[indx] = " "
+        my_trap
       end
     end
 

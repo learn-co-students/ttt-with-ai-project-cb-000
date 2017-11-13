@@ -2,8 +2,6 @@
 
   def initialize(cells = Array.new(9, " "))
     @cells = cells
-    puts "Welcome to TicTacToe!"
-    display
   end
 
   attr_accessor :cells
