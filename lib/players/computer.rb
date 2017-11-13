@@ -1,3 +1,4 @@
+require "pry"
 module Players
   class Computer < Player
 
@@ -18,9 +19,9 @@ module Players
     end
 
     def move(board)
-      if my_move = win_move?(board,@token) #Take te win
+      if false && my_move = win_move?(board,@token) #Take te win
         (my_move+1).to_s
-      elsif my_move = win_move?(board,@opponent) #Block opponent's win
+      elsif false && my_move = win_move?(board,@opponent) #Block opponent's win
         (my_move+1).to_s
       else
         (valid_moves(board).sample+1).to_s #Convert to Human understandable positions
@@ -28,7 +29,8 @@ module Players
     end
 
     def valid_moves(board) #Returns Array indexes of valid moves
-      board.cells.collect.with_index {|c, i|  i if c == " "}
+      #binding.pry
+      board.cells.collect.with_index {|c, i|  i if c == " "}.compact
     end
 
     def win_move?(board, token)

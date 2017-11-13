@@ -38,6 +38,7 @@
 
   def update(pos, current_player)
     @cells[input_to_index(pos)] = current_player.token
+    display
   end
 
   def position(pos)
