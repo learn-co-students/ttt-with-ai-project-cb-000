@@ -49,6 +49,7 @@ class Game
     while !over? do turn end
     won? ? (puts "Congratulations #{winner}!") : (puts "Cat's Game!")
   end
+
   def self.start
     puts "Welcome to Tic Tac Toe!"
     loop do

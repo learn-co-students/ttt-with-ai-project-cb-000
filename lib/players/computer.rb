@@ -23,6 +23,12 @@ module Players
         (my_move+1).to_s
       elsif my_move = win_move?(board,@opponent) #Block opponent's win
         (my_move+1).to_s
+      elsif my_move = trap_move?(board,@token,@opponent) #Setup a 2way trap
+        (my_move+1).to_s
+      elsif my_move = trap_move?(board,@opponent,@token) #Block opponent's possible 2way trap
+        (my_move+1).to_s
+      elsif my_move = setup_move?(board,@opponent) #Try for a 2way trap
+        (my_move+1).to_s
       else
         valid_moves(board).map{|e| e+1}.sample.to_s #Convert to Human understandable positions
       end
@@ -43,13 +49,20 @@ module Players
       end
     end
 
-    def trap_move(board, token)
+    def trap_move?(board, token, opponent)
       temp_cells = board.cells
       valid_moves(board).detect do |indx| #See if we can find a 2way trap move for token
-        temp_cells[indx] = "#{token}"
-        my_trap = WIN_COMBINATIONS.detect {|line| line.all? {|i| temp_cells[i] == token}; }
-        temp_cells[indx] = " "
-        my_trap
+        #select win lines that include indx, then select those that don't have opponent token, from those select those with our token. If there's two, should set a trap.
+        WIN_COMBINATIONS.select{|c| c.include?(indx)}.select{|line| line.none?{|i| temp_cells[i] == opponent}}.select{|line| line.detect{|i| temp_cells[i] == token}}.count > 1
+      end
+      #binding.pry
+    end
+
+    def setup_move?(board, opponent)
+      temp_cells = board.cells
+      valid_moves(board).detect do |indx| #See if we can find a 2way trap move for token
+        #select win lines that include indx, then select those that don't have opponent token, from those select those with our token. If there's two, should set a trap.
+        WIN_COMBINATIONS.select{|c| c.include?(indx)}.select{|line| line.none?{|i| temp_cells[i] == opponent}}.count > 1
       end
     end
 
