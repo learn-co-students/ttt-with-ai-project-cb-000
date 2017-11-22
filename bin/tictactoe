@@ -1,3 +1,44 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+playing = 'y'
+while playing == 'y'
+
+puts "                                "
+puts "……(\_/) "
+puts "……( ‘_’) "
+puts "…./'''''''\======░"
+puts "/''''''''''''''''''\ "
+puts "\_0_0_0_0_0_0_0_0_0_0/"
+puts "                                "
+puts "Welcome to Advanced Multi-player Tic Tac Toe! (A.I. Edition)"
+puts "-----------------------------"
+puts "Select your player options below:"
+puts "                                "
+puts "-Single Player Mode:"
+puts "Press 1"
+puts "-------------------"
+puts "-Two Player Mode:"
+puts "Press 2"
+puts "-------------------"
+puts "-AI Vs. AI"
+puts "Press 3"
+puts "                                "
+puts "Choose your selection:"
+puts "                                "
+
+input = gets.strip.to_i
+
+case input
+when 1
+Game.new(player1 = Players::Human.new("X"), player2 = Players::Computer.new("O"), board = Board.new).play
+when 2
+Game.new(player1 = Players::Human.new("X"), player2 = Players::Human.new("O"), board = Board.new).play
+when 3
+Game.new(player1 = Players::Computer.new("X"), player2 = Players::Computer.new("O"), board = Board.new).play
+else
+end
+
+puts "Would you like to play again!?"
+playing = gets.strip.downcase
+end
