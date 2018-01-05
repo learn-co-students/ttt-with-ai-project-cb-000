@@ -10,8 +10,8 @@ class Game
   end
 
   def current_player
-    puts "X: #{@board.cells.select {|cell| cell == @player_1.token}.size}"
-    puts "O: #{@board.cells.select {|cell| cell == @player_2.token}.size}"
+    #puts "X: #{@board.cells.select {|cell| cell == @player_1.token}.size}"
+    #puts "O: #{@board.cells.select {|cell| cell == @player_2.token}.size}"
     #puts @board.cells.select {|cell| cell == @player_1.token}.size >= @board.cells.select {|cell| cell == @player_2.token}.size ? @player_1 : @player_2
     @board.cells.select {|cell| cell == @player_1.token}.size <= @board.cells.select {|cell| cell == @player_2.token}.size ? @player_1 : @player_2
   end
