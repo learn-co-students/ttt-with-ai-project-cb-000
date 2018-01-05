@@ -8,7 +8,8 @@ class Players
       end
       rand_i = indexes.sample
       board[rand_i.to_i - 1] = self.token
-      sleep(2.5)
+      sleep(1.5)
+      puts "(computer)"
       puts rand_i
       rand_i
     end

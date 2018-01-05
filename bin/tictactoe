@@ -1,6 +1,4 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
-
-game = Game.new(Players::Human.new("X"), player_2 = Players::Computer.new("O"))
-game.play
+Game.start
