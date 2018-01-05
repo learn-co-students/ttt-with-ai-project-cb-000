@@ -36,6 +36,7 @@ class Game
   def turn
     move = nil
     while move == nil
+      @board.display
       puts "Player #{current_player.token}, take your turn:"
       player = @player_1.token == current_player.token ? @player_1 : @player_2
       move = player.move(@board.cells)

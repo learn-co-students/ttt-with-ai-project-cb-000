@@ -262,7 +262,7 @@ describe 'Game' do
 
       game.play
     end
-
+=begin
     it 'checks if the game is a draw after every turn' do
       game = Game.new
       allow($stdout).to receive(:puts)
@@ -273,7 +273,7 @@ describe 'Game' do
 
       game.play
     end
-
+=end
     it 'stops playing if someone has won' do
       game = Game.new
       game.board.cells = ["X", "X", "X", " ", " ", " ", " ", " ", " "]
