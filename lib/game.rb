@@ -130,13 +130,14 @@ class Game < Players::Human
  	end
 
  	def play
- 		 	while !over? && !draw?
+ 				while !self.over? && !self.draw?
  					turn
- 			end
- 			if over? && !draw?
-  				puts "Congratulations #{current_player.token}!"
- 			elsif draw? 
- 				puts "Cat's Game!"
- 			end
+ 				end	
+ 				if draw?
+ 					puts "Cat's Game!"
+ 				else	
+ 					puts "Congratulations #{winner}!"	
+ 				end
  	end
+
 end
