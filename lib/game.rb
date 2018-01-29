@@ -38,7 +38,7 @@ class Game < Players::Human
  	end
 
  	def self.player_1
- 		@player_1.move
+ 		@player_1
  	end
 
  	def self.player_2
@@ -120,10 +120,19 @@ class Game < Players::Human
  	end
 
  	def turn
+		player = current_player
+		move = current_player.move(@board)
 		
+		if @board.valid_move?(move) == true
+			@board.update(move, current_player)
+		else 
+			turn
+		end
  	end
 
  	def play
-
+ 			while !self.over?
+ 				turn
+ 			end
  	end
 end
