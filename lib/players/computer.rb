@@ -6,7 +6,9 @@ class Players
 		def move(board)
 			input = gets.chomp #random move between 1-9?
 			if board.valid_move?(input) == true
-				Game.turn
+				 computer_move = Random.new		
+				 computer_move = computer_move.rand(1..9)
+				 computer_move
 			end
 		end
 	end

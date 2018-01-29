@@ -83,13 +83,7 @@ class Board
 	end
 
 	def update(input, player)
-		input = input.to_i #converts string to integer
-		input = input - 1
-			if input.even? == true
-				@cells[input] = "X"
-			elsif input.odd? == true
-				@cells[input] = "O"
-			end
+		@cells[input.to_i - 1] = player.token
 	end
 
 end

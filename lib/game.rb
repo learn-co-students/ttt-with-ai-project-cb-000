@@ -11,8 +11,7 @@ class Game < Players::Human
  	def initialize(player_1 = Players::Human.new("X"), player_2 = Players::Human.new("O"), board = Board.new)
  		@board = board
  		@player_1 = player_1
- 		@player_2 = player_2
- 		@count = 0 
+ 		@player_2 = player_2 
  	end
 
  	def self.board
@@ -37,20 +36,20 @@ class Game < Players::Human
  		@player_2
  	end
 
- 	def self.player_1
- 		@player_1
- 	end
+ 	# def self.player_1
+ 	# 	@player_1
+ 	# end
 
- 	def self.player_2
- 		@player_2
- 	end 
+ 	# def self.player_2
+ 	# 	@player_2
+ 	# end 
 
  	def current_player
  		# count each move
- 		if @board.turn_count.odd?  
- 			return @player_2
- 		else
+ 		if @board.turn_count.even?  
  			return @player_1
+ 		else
+ 			return @player_2
  		end
  	end
 
@@ -131,8 +130,13 @@ class Game < Players::Human
  	end
 
  	def play
- 			while !self.over?
- 				turn
+ 		 	while !over? && !draw?
+ 					turn
+ 			end
+ 			if over? && !draw?
+  				puts "Congratulations #{current_player.token}!"
+ 			elsif draw? 
+ 				puts "Cat's Game!"
  			end
  	end
 end
