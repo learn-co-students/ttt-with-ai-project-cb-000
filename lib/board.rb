@@ -33,17 +33,16 @@ class Board
   def full?
     cells.all? {|value| value == "X" || value == "O"}
   end
+
+  # Board #turn_count returns the amount of turns based on cell value
+  def turn_count
+    cells.count {|value| value == "X" || value == "O"}
+  end
 end
 
 
 
 
-
-
-
-
-
-# Board #turn_count returns the amount of turns based on cell value
 
 # Board #taken? returns true if the position is X or O
 
