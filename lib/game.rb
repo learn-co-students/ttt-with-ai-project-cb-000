@@ -47,6 +47,9 @@ class Game
   # Game #draw? returns true for a draw
   # Game #draw? returns false for a won game
   # Game #draw? returns false for an in-progress game
+  def draw?
+    @board.full? && !won?
+  end
 
   # Game #winner returns X when X won
   # Game #winner returns O when O won
