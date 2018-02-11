@@ -1,4 +1,10 @@
 class Game
+  # Game #board provides access to the board
+  # Game #player_1 provides access to player_1
+  # Game #player_2 provides access to player_2
+  attr_accessor :board, :player_1, :player_2
+
+
   # Game ::WIN_COMBINATIONS defines a constant WIN_COMBINATIONS with arrays for each win combination
   WIN_COMBINATIONS = [
     [0,1,2],
@@ -11,11 +17,7 @@ class Game
     [6,4,2]
   ]
 
-  # Game #board provides access to the board
 
-  # Game #player_1 provides access to player_1
-
-  # Game #player_2 provides access to player_2
 
   # Game initialize accepts 2 players and a board
 
