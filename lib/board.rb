@@ -2,15 +2,23 @@
 class Board
   # Board #cells has an attribute to store the cells of the board
   attr_accessor :cells
+
+  # Board #initialize sets the cells of the board to a 9 element array of " "
+  def initialize()
+    reset!
+  end
+
+  # Board #reset! sets the cells of the board to a 9 element array of " "
+  # Board #reset! can reset the state of the cells in the board
+  def reset!
+    @cells = Array.new(9, " ")
+  end
 end
 
 
 
-# Board #reset! can reset the state of the cells in the board
 
-# Board #reset! sets the cells of the board to a 9 element array of " "
 
-# Board #initialize sets the cells of the board to a 9 element array of " "
 
 # Board #display prints the board
 
