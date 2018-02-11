@@ -64,8 +64,24 @@ class Game
   end
 
   # Game turn makes valid moves
-  # Game turn asks for input again after a failed validation
-  # Game turn changes to player 2 after the first turn
+  def turn
+    player = current_player
+    current_move = player.move(@board)
+
+    if !@board.valid_move?(current_move)
+      # Game turn asks for input again after a failed validation
+      turn
+    else
+      # Game turn changes to player 2 after the first turn
+      puts "Turn: #{@board.turn_count+1}\n"
+      @board.display
+      @board.update(current_move, player)
+      puts "#{player.token} moved #{current_move}"
+      @board.display
+      puts "\n\n"
+    end
+  end
+
 
   # Game play asks for players input on a turn of the game
   # Game play checks if the game is over after every turn
