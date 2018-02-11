@@ -82,17 +82,26 @@ class Game
     end
   end
 
-
-  # Game play asks for players input on a turn of the game
-  # Game play checks if the game is over after every turn
-  # Game play plays the first turn of the game
-  # Game play plays the first few turns of the game
-  # Game play checks if the game is won after every turn
-  # Game play checks if the game is a draw after every turn
-  # Game play stops playing if someone has won
-  # Game play congratulates the winner X
-  # Game play congratulates the winner O
-  # Game play stops playing in a draw
-  # Game play prints "Cat's Game!" on a draw
   # Game play plays through an entire game
+  def play
+    # Game play asks for players input on a turn of the game
+    # Game play checks if the game is over after every turn
+    # Game play plays the first turn of the game
+    # Game play plays the first few turns of the game
+    # Game play checks if the game is won after every turn
+    # Game play checks if the game is a draw after every turn
+    while !over?
+      turn
+    end
+    # Game play stops playing if someone has won
+    # Game play congratulates the winner X
+    # Game play congratulates the winner O
+    if won?
+      puts "Congratulations #{winner}!"
+    # Game play stops playing in a draw
+    # Game play prints "Cat's Game!" on a draw
+    elsif draw?
+      puts "Cat's Game!"
+    end
+  end
 end
