@@ -27,15 +27,21 @@ class Board
   def position(input)
     cells[input.to_i-1]
   end
+
+  # Board #full? returns true for a full board
+  # Board #full? returns false for an in-progress game
+  def full?
+    cells.all? {|value| value == "X" || value == "O"}
+  end
 end
 
 
 
 
 
-# Board #full? returns true for a full board
 
-# Board #full? returns false for an in-progress game
+
+
 
 # Board #turn_count returns the amount of turns based on cell value
 
