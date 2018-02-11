@@ -33,6 +33,9 @@ class Game
   # Game #over? returns true for a draw
   # Game #over? returns true for a won game
   # Game #over? returns false for an in-progress game
+  def over?
+    won? || draw?
+  end
 
   # Game #won? returns false for a draw
   # Game #won? returns the correct winning combination in the case of a win
