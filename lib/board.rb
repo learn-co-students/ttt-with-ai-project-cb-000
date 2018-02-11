@@ -44,6 +44,11 @@ class Board
   def taken?(input)
     !(position(input) == " " || position(input) == "")
   end
+
+  # Board #valid_move? returns true for user input between 1-9 that is not taken
+  def valid_move?(input)
+    input.to_i.between?(1,9) && !taken?(input)
+  end
 end
 
 
@@ -52,6 +57,6 @@ end
 
 
 
-# Board #valid_move? returns true for user input between 1-9 that is not taken
+
 
 # Board #update updates the cells in the board with the player token according to the input
