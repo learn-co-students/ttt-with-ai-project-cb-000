@@ -36,6 +36,13 @@ class Game
 
   # Game #won? returns false for a draw
   # Game #won? returns the correct winning combination in the case of a win
+  def won?
+    WIN_COMBINATIONS.detect do |combo|
+      @board.cells[combo[0]] == @board.cells[combo[1]] &&
+      @board.cells[combo[1]] == @board.cells[combo[2]] &&
+      @board.taken?(combo[0]+1)
+    end
+  end
 
   # Game #draw? returns true for a draw
   # Game #draw? returns false for a won game
