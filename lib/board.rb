@@ -38,15 +38,19 @@ class Board
   def turn_count
     cells.count {|value| value == "X" || value == "O"}
   end
+
+  # Board #taken? returns true if the position is X or O
+  # Board #taken? returns false if the position is empty or blank
+  def taken?(input)
+    !(position(input) == " " || position(input) == "")
+  end
 end
 
 
 
 
 
-# Board #taken? returns true if the position is X or O
 
-# Board #taken? returns false if the position is empty or blank
 
 # Board #valid_move? returns true for user input between 1-9 that is not taken
 
