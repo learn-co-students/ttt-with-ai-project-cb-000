@@ -22,11 +22,16 @@ class Board
     puts "-----------"
     puts " #{cells[6]} | #{cells[7]} | #{cells[8]} "
   end
+
+  # Board #position takes in user input and returns the value of the board cell
+  def position(input)
+    cells[input.to_i-1]
+  end
 end
 
 
 
-# Board #position takes in user input and returns the value of the board cell
+
 
 # Board #full? returns true for a full board
 
