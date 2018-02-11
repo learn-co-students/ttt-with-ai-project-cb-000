@@ -57,6 +57,11 @@ class Game
   # Game #winner returns X when X won
   # Game #winner returns O when O won
   # Game #winner returns nil when no winner
+  def winner
+    if winning_combo = won?
+      @winner = @board.cells[winning_combo.first]
+    end
+  end
 
   # Game turn makes valid moves
   # Game turn asks for input again after a failed validation
