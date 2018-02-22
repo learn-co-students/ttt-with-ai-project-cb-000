@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pry-byebug.rb'
 
 describe 'Players::Computer' do
   it 'inherits from Player' do

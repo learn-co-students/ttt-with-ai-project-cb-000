@@ -17,7 +17,7 @@ class Board
     puts Horizontal
     print " ", cells[3], Vertical, cells[4], Vertical, cells[5], " \n"
     puts Horizontal
-    print " ", cells[6], Vertical, cells[7], Vertical, cells[8], " \n"
+    print " ", cells[6], Vertical, cells[7], Vertical, cells[8], " \n\n"
   end
 
   def valid_position? (position_of_interest)
@@ -50,6 +50,10 @@ class Board
     if valid_move? position_of_interest  
       @cells[position_of_interest.to_i - 1] = player.token
     end
+  end
+
+  def empty?
+    @cells.count(" ") == 9
   end
 
 end
