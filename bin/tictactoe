@@ -1,3 +1,38 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+def start
+  puts "How many players?"
+  players = gets.chomp until ["0", "1", "2"].include?(players)
+
+  puts "Will player 1 be X or O"
+  p1_token = gets.chomp until ["X", "O"].include?(p1_token)
+  p1_token == "X" ? (p2_token = "O") : (p2_token = "X")
+
+  case players
+    when "0"
+      player_1 = Players::Computer.new(p1_token)
+      player_2 = Players::Computer.new(p2_token)
+    when "1"
+      player_1 = Players::Human.new(p1_token)
+      player_2 = Players::Computer.new(p2_token)
+    when "2"
+      player_1 = Players::Human.new(p1_token)
+      player_2 = Players::Human.new(p2_token)
+  end
+
+  board = Board.new
+
+  game = Game.new(player_1, player_2, board)
+  game.play
+
+end
+
+again = "yes"
+puts "Welcome to Tic Tac Toe!"
+while !["n", "N", "no", "No", "NO", "exit"].include?(again)
+  start
+  puts "Play again?"
+  again = gets.chomp
+end
