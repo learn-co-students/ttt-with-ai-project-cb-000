@@ -1,3 +1,80 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+puts "Yo yo yo, welcome to tic tac toe".colorize(:light_green)
+puts "With all new... ARTIFICIAL INTELLIGENCE".colorize(:light_green)
+puts "\n"
+
+def run_game
+    #binding.pry
+    playing = true
+
+    while playing == true
+        puts "Who do you want to play? (a mate, a computer, or just watch two computers)".colorize(:light_blue)
+        puts "--------------------------------------------------------------------------"
+        puts "Enter 'wargames' to test the AI".colorize(:light_blue)
+        print "> "
+        input = gets.strip
+
+        if input.include?("mate")
+            game = Game.new
+            game.play
+            playing = play_again?
+        elsif input.include?("computer")
+            game = Game.new(Players::Human.new("X"), player_2 = Players::Computer.new("O"))
+            game.play
+            playing = play_again?
+        elsif input.include?("watch") || input.include?("watch") && input.include?("two")
+            game = Game.new(Players::Computer.new("X"), player_2 = Players::Computer.new("O"))
+            game.play
+            playing = play_again?
+        elsif input.include?("wargames")
+            x_wins = 0
+            o_wins = 0
+            draws = 0
+            100.times do 
+                game = Game.new(Players::Computer.new("X"), player_2 = Players::Computer.new("O"))
+                game.wargames
+                if game.winner == "X"
+                    x_wins += 1
+                elsif game.winner == "O"
+                    x_wins += 1
+                elsif game.draw?
+                    draws += 1
+                end
+            end
+            puts "\nX won #{x_wins} times. O won #{o_wins} times. The game was drawn #{draws} times."
+            if draws <= 49
+                print "MACHINE STATUS: "
+                puts "BAD AI".colorize(:red)
+            elsif draws == 50..89
+                print "MACHINE STATUS: "
+                puts "OK AI".colorize(:yellow)
+            elsif draws == 100
+                print "MACHINE STATUS: "
+                puts "GOOD AI".colorize(:green)
+            end
+            playing = play_again?
+        end
+    end
+end
+
+def play_again?
+    input = ""
+    while input != "yes" || input != "no"
+        puts "-----------------------------------"
+        puts "Do you want to play again? (yes/no)"
+        print "> "
+        input = gets.strip
+        if input == "yes"
+            return true
+        elsif input == "no"
+            return false
+        else
+            puts "You didn't enter yes or no"
+        end
+    end
+end
+
+run_game
