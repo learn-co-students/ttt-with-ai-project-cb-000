@@ -33,9 +33,9 @@ def computer
 end
 
 def one_player
-  start_first = play_first?
+  first = play_first?
   token = pick_token
-  if start_first
+  if first
     if token == 'X'
       player_1 = Players::Human.new('X')
       player_2 = Players::Computer.new('O')
