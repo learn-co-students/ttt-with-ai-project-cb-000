@@ -21,14 +21,14 @@ class Game
   end
 
   def over?
-    board.full? ? true : false
+    won? || draw?
   end
 
   def won?
       WIN_COMBINATIONS.any? do |combo|
-        #binding.pry
-#        if board.taken?(combo[0]-1) && @board.cells[combo[0]] == @board.cells[combo[1]] && @board.cells[combo[1]] == @board.cells[combo[2]]
-        if @board.cells[combo[0]] != " " && @board.cells[combo[0]] == @board.cells[combo[1]] && @board.cells[combo[1]] == @board.cells[combo[2]]
+        if @board.cells[combo[0]] != " " &&
+           @board.cells[combo[0]] == @board.cells[combo[1]] &&
+           @board.cells[combo[1]] == @board.cells[combo[2]]
           return [combo[0],combo[1],combo[2]]
         end
       end
@@ -36,35 +36,37 @@ class Game
   end
 
   def draw?
-    board.full? && !won?
+    @board.full? && !won?
   end
 
   def winner
-    #binding.pry
     won? ? @board.cells[won?[0]] : nil
   end
 
   def turn
-    puts "Please enter a number (1-9):"
-    ui = gets.strip
+    player = current_player
+    current_move = player.move(@board)
+    if !@board.valid_move?(current_move)
+      turn
+    else
+      puts "Turn: #{@board.turn_count+1}\n"
+      @board.display
+      @board.update(current_move, player)
+      puts "#{player.token} moved #{current_move}"
+      @board.display
+      puts "\n\n"
+    end
+  end
+
+  def play
+    while !over?
+      turn
+    end
+    if won?
+      puts "Congratulations #{winner}!"
+    elsif draw?
+      puts "Cat's Game!"
+    end
   end
 
 end
-
-
-
-
-
-
-
-
-
-
-#index = input_to_index(ui)
-#if valid_move?(index)
-#  token = current_player
-#  move(index, token)
-#else
-#  turn
-#end
-#display_board
