@@ -41,8 +41,17 @@ class Game
 
   def turn
     move = current_player.move(@board)
-    turn if !@board.valid_move?(move)
-    @board.update(move, current_player)
+    if !@board.valid_move?(move)
+      turn
+    else
+      puts "Turn: #{@board.turn_count+1}\n"
+      @board.display
+      puts "\n"
+      @board.update(move, current_player)
+      puts "moved to square #{move}"
+      @board.display
+      puts "\n"
+    end
   end
 
   def play
@@ -50,4 +59,65 @@ class Game
     puts "Congratulations #{winner}!" if won?
     puts "Cat's Game!" if draw?
   end
+
+  def start
+    input = ""
+    while input != "q"
+      puts "Welcome to Tic Tac Toe!"
+      puts "Enter \'0\' to spectate 2 computer players"
+      puts "Enter \'1\' to play against the computer"
+      puts "Enter \'2\' to play with a friend"
+      puts "Enter \'q\' to quit"
+      input = gets.chomp.downcase
+      case input
+      when "0"
+        spectate
+      when "1"
+        one_player
+      when "2"
+        two_player
+      end
+    end
+  end
+
+  def spectate
+    token = pick_token
+    if token == "X"
+      player_1 = Players::Computer.new("X")
+      player_2 = Players::Computer.new("O")
+    else
+      player_1 = Players::Computer.new("O")
+      player_2 = Players::Computer.new("X")
+    end
+    Game.new(player_1, player_2).play
+  end
+
+  def one_player
+    token = pick_token
+    if token == "X"
+      player_1 = Players::Human.new("X")
+      player_2 = Players::Computer.new("O")
+    else
+      player_1 = Players::Human.new("O")
+      player_2 = Players::Computer.new("X")
+    end
+    Game.new(player_1, player_2).play
+  end
+
+  def two_player
+    token = pick_token
+    if token == "X"
+      player_1 = Players::Human.new("X")
+      player_2 = Players::Human.new("O")
+    else
+      player_1 = Players::Human.new("O")
+      player_2 = Players::Human.new("X")
+    end
+    Game.new(player_1, player_2).play
+  end
+
+  def pick_token
+    ["X", "O"].sample
+  end
+
 end
