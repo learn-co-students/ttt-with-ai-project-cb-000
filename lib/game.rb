@@ -55,6 +55,7 @@ class Game
   end
 
   def play
+    @board.display
     turn while !over?
     puts "Congratulations #{winner}!" if won?
     puts "Cat's Game!" if draw?
