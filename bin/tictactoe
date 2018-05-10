@@ -1,3 +1,47 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+
+
+def game_play
+  px = Players::Human.new("X")
+  po = Players::Human.new("O")
+  cx = Players::Computer.new("X")
+  co = Players::Computer.new("O")
+  puts "Pick one: 0, 1, or 2 player game?"
+  i = gets.to_i
+  if i == 0
+    game = Game.new(cx, co)
+  elsif i == 1
+    puts "Who should start and be X? 1: Human, 2: Computer"
+    n = gets.to_i
+    if n == 1
+      game = Game.new(px, co)
+    elsif n == 2
+      game = Game.new(cx, po)
+    end
+  elsif i == 2
+    puts "Player 1 = X, Player 2 = Y"
+    game = Game.new(px, po)
+  else
+    game_play
+  end
+  game.play
+  gameover
+end
+
+def gameover
+  puts "Would you like to play again? 1: Y or 2: N?"
+  t = gets.to_i
+  if t == 1
+    game_play
+  elsif t == 2
+    puts "Game Complete"
+  else
+    gameover
+  end
+end
+
+game_play
