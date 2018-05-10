@@ -1,3 +1,81 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+puts "Welcome to Ruby TTT"
+puts "What kind of game would you like to play"
+#possible puts loop until right answer
+puts "0 players , 1 player or 2 players: Choices are [0 ,1, or 2]"
+play_type=gets.strip
+
+# first_player =  if we choose 1 or 2 players
+first_player = 0
+
+if play_type == "1"
+  puts "Who should go first? Human or Computer. Type [1, 2]"
+  first_player = gets.strip
+end #play_type
+
+if play_type == "2"
+  puts "Who should go first? Player 1 or Player 2. Type [1, 2]"
+  first_player = gets.strip
+end #play_type
+#what if computer vs computer who goes first? comuter 1
+
+#init game ***************************************************************
+
+# if comuter only*******************************************************************************************************************
+# def initialize(player_1=Players::Human.new("X"), player_2=Players::Human.new("O"), board=Board.new)
+
+if play_type == "0"
+  player1 = Players::Computer.new("X")
+  player2 = Players::Computer.new("Y")
+  # puts "#{player2.token}"
+  new_game = Game.new(player1,player2)
+  new_game.play
+end #play_type = 0
+
+# *************************************************************************************************************************************
+# if single player only*******************************************************************************************************************
+# who goes first human or computer?
+if play_type == "1"
+  if first_player == "1"
+    #human first, pc second
+    player1 = Players::Human.new("X")
+    player2 = Players::Computer.new("Y")
+  else
+    #pc first human second
+    player1 = Players::Computer.new("X")
+    player1 = Players::Human.new("X")
+  end
+  new_game = Game.new(player1,player2)
+  new_game.play
+end #play_type = 1
+
+# *************************************************************************************************************************************
+
+# who is player2
+#   are they computer?
+# if double  player only*******************************************************************************************************************
+# who goes first
+if play_type == "2"
+  if first_player == "1"
+    #human first, pc second
+    player1 = Players::Human.new("X")
+    player2 = Players::Human.new("O")
+  else
+    #pc first human second
+    player2 = Players::Human.new("O")
+    player1 = Players::Human.new("X")
+  end
+  new_game = Game.new(player1,player2)
+  new_game.play
+end #play_type = 1
+
+
+
+
+
+# send Game player1, player2
+
+new_game = Game.new()    #player1, player2, gameboard optional
