@@ -1,3 +1,19 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+require 'pry'
+
+puts "Welcome to Tic Tac Toe!"
+
+game = Game.new
+game.start
+
+play_again = ""
+until play_again == "no" || play_again == "n"
+  puts "Play again? (Yes or no?)"
+  play_again = gets.strip.downcase
+  if play_again == "yes" || play_again == "y"
+    game = Game.new
+    game.start
+  end
+end
