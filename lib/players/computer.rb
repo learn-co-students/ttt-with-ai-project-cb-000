@@ -11,6 +11,7 @@ module Players
     end
 
 
+=begin
     def make_move
       case
         when !@board.taken?(5)
@@ -35,7 +36,7 @@ module Players
           6
       end
     end
-
+=end
   end
 
 end
