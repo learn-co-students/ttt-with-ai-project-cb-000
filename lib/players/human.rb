@@ -1,10 +1,9 @@
 module Players
   class Human < Player
 
-    def move(spot)
+    def move(input)
       gets.strip
     end
 
   end
-
 end
