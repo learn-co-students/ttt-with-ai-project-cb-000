@@ -1,3 +1,16 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+# playing = "y"
+# while playing == "y"
+#   puts "Welcome to Tic-Tac-Toe!"
+#   puts "How many players? (1, 2 or 0)"
+#   input = gets.strip
+#   puts "Who should go first and be \"X\" (Player 1, Player 2 or Computer)"
+#   input2 = gets.strip
+#   game = Game.new()
+#   game.play
+#   puts "Play Again? y or n"
+#   playing = gets.strip.to_s
+# end
+Game.start
