@@ -1,3 +1,11 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+# launch irb session to debug/test app
+# require 'irb'
+# puts '... loading your CLI environment'
+# IRB.start
+
+# launch cli app
+GameController.new.call
