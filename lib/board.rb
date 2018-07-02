@@ -40,9 +40,9 @@ class Board
         !taken?(input) && (1..9).include?(input.to_i)
     end
 
-    def update(input, player="X")
+    def update(input, player)
         input = input.to_i - 1
-        self.cells[input] = player
+        self.cells[input] = player.token
     end
 
 end
