@@ -44,8 +44,17 @@ class Game
 
     def turn
         puts "Enter move: "
-        input = current_player.move(@board)
-        @board.valid_move?(input) ? @board.position(input) : turn
+        player = current_player
+        input = player.move(@board)
+        @board.valid_move?(input) ? @board.update(input, player) : turn
+    end
+
+    def play
+        while !over?
+            turn
+            break if draw?
+        end
+        won? ? puts("Congratulations " + winner + "!") : puts("Cat's Game!")
     end
 
 end
