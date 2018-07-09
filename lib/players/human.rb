@@ -15,14 +15,4 @@ module Players
         end
     end
 
-    class Computer < Player
-
-        attr_accessor :move
-
-        def move(board)
-            move = board.cells.index(" ") + 1
-            move.to_s
-        end
-
-    end
 end

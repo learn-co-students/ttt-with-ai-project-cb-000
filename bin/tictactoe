@@ -1,3 +1,64 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+require 'pry'
+include Players
+
+def play_game
+    puts ("Welcome to the Tic-tac-toe game!")
+    num_players = get_num_players
+    x_player = get_X_player
+    start_game(num_players, x_player)
+    play_game if play_again?
+end
+
+def get_num_players
+    puts "How many humans will play in this game?"
+    num_players = gets.chomp
+    get_num_players if !(0..2).include?(num_players.to_i)
+    num_players
+end
+
+def get_X_player
+    puts ('Which player should go first and be "X"?')
+    x_player = gets.chomp
+    get_X_player if !(1..2).include?(x_player.to_i)
+    x_player
+end
+
+def play_again?
+    puts ("Would you like to play again? ['Y'/'N']")
+    play_again = gets.chomp.downcase
+    play_again == "y"
+end
+
+def start_game(num_players, x_player)
+
+    if x_player == "1"
+        player1_token = "X"
+        player2_token = "O"
+    else
+        player1_token = "O"
+        player2_token = "X"
+    end
+
+    case num_players
+    when "0"
+        player_1 = Computer.new(player1_token)
+        player_2 = Computer.new(player2_token)
+    when "1"
+        player_1 = Human.new(player1_token)
+        player_2 = Computer.new(player2_token)
+    when "2"
+        player_1 = Human.new(player1_token)
+        player_2 = Human.new(player2_token)
+    else
+        puts "Not a valid entry"
+
+    end
+
+    game = Game.new(player_1, player_2)
+    game.play
+end
+
+play_game
