@@ -1,3 +1,5 @@
+require 'pry'
+
 class Board 
   attr_accessor :cells
   def initialize 
@@ -46,10 +48,22 @@ class Board
   end
   
   def valid_move?(move)
-    if move.match(\A[1-9]\z) != nil
-      true 
-    else
-      false
+    if move.match(/\A[1-9]\z/) != nil
+      if(@cells[move.to_i - 1] == " ")
+        true 
+      else
+        false
+      end
     end
+  end
+  
+  def update(move, player)
+    char = ""
+    if move.to_i.odd?
+      char = "X"
+    else
+      char = "O"
+    end
+    @cells[move.to_i - 1] = char
   end
 end
