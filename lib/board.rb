@@ -22,6 +22,30 @@ class Board
   end
   
   def full?
+    isFull = true 
+    @cells.each do |cell|
+      if cell == " "
+        isFull = false 
+      end
+    end
+    isFull
+  end
   
+  def turn_count 
+    turn = 0
+    @cells.each do |cell|
+      if(cell == "X" || cell == "O")
+        turn += 1 
+      end
+    end
+    turn
+  end
+  
+  def taken?(pos)
+    @cells[pos.to_i-1] == "X" || @cells[pos.to_i-1] == "O"
+  end
+  
+  def valid_move?(move)
+    if(move.)
   end
 end
