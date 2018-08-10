@@ -46,6 +46,10 @@ class Board
   end
   
   def valid_move?(move)
-    if(move.)
+    if move.match(\A[1-9]\z) != nil
+      true 
+    else
+      false
+    end
   end
 end
