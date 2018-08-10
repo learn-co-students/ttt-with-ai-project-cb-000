@@ -54,12 +54,14 @@ class Board
       else
         false
       end
+    else
+      false
     end
   end
   
   def update(move, player)
     char = ""
-    if move.to_i.odd?
+    if turn_count.even?
       char = "X"
     else
       char = "O"
