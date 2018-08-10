@@ -16,4 +16,12 @@ class Board
     puts "-----------"
     puts " #{cells[6]} | #{cells[7]} | #{cells[8]} "
   end
+  
+  def position(pos)
+    @cells[pos.to_i-1]
+  end
+  
+  def full?
+  
+  end
 end
