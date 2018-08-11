@@ -2,9 +2,11 @@ require 'pry'
 module Players 
   class Human < Player 
     def move(board)
-      input = gets
-      if !board.valid_move?(input)
-        input = gets
+      puts "Input move [1-9]"
+      input = gets.chomp
+      while !board.valid_move?(input)
+        puts "Input move [1-9]"
+        input = gets.chomp
       end
       input
     end

@@ -59,6 +59,10 @@ class Board
     end
   end
   
+  def set_cells(cells)
+    @cells = cells
+  end
+  
   def update(move, player)
     char = ""
     if turn_count.even?

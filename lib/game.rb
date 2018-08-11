@@ -15,7 +15,6 @@ WIN_COMBINATIONS = [  [0, 1, 2],
     @player_1 = player_1
     @player_2 = player_2
     @board = board
-    
   end
   
   def current_player
@@ -66,19 +65,24 @@ WIN_COMBINATIONS = [  [0, 1, 2],
   
   def turn
     if(@board.turn_count.even?)
+      puts "Player 1's Turn, '#{@player_1.token}'"
       move = @player_1.move(@board)
       if @board.valid_move?(move)
         @board.update(move, @player_1)
+        @board.display
       end
     else
+      puts "Player 2's Turn, '#{@player_2.token}'"
       move = @player_2.move(@board)
       if @board.valid_move?(move)
         @board.update(move, @player_2)
+        @board.display
       end
     end
   end
   
-  def play 
+  def play
+    @board.display
     while !over?
       turn
     end
