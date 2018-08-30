@@ -1,3 +1,93 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+def greeting
+  puts "Welcome to Tic-Tac-Toe!"
+end
+
+def get_number_of_players
+  number_of_players = nil
+  puts "How many players? (0, 1, or 2):"
+
+  while number_of_players == nil
+    input = gets.chomp
+
+    case input
+    when "0"
+      number_of_players = input
+    when "1"
+      number_of_players = input
+    when "2"
+      number_of_players = input
+    else
+      puts "Please enter a valid number of players (0, 1, or 2):"
+    end
+  end
+  number_of_players
+end
+
+def prompt_y_or_n(message)
+  response = nil
+
+  while response == nil
+    puts message
+    input = gets.chomp
+    case input
+    when "Y"
+      response = true
+    when "y"
+      response = true
+    when "N"
+      response = false
+    when "n"
+      response = false
+    else
+      puts "Invalid input!"
+    end
+  end
+  response
+end
+
+def create_players
+  number_of_players = get_number_of_players
+  
+  case number_of_players
+  when "0"
+    player_1 = Players::Computer.new("X")
+    player_2 = Players::Computer.new("O")
+  when "1"
+    if prompt_y_or_n("Do you want the computer to go first? (Enter 'y' or 'n'):")
+      player_1 = Players::Computer.new("X")
+      player_2 = Players::Human.new("O")
+    else
+      player_1 = Players::Human.new("X")
+      player_2 = Players::Computer.new("O")
+    end
+  when "2"
+    player_1 = Players::Human.new("X")
+    player_2 = Players::Human.new("O")
+  end
+  {:player_1 => player_1, :player_2 => player_2}
+end
+
+def new_game
+  players = create_players
+  board = Board.new
+  game = Game.new(players[:player_1], players[:player_2], board)
+  game.play
+  play_again?
+end
+
+def start
+  greeting
+  new_game
+end
+
+def play_again?
+  if prompt_y_or_n("Do you want to play again? (Enter 'y' or 'n'):")
+    new_game
+  end
+end
+
+start
