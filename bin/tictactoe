@@ -1,3 +1,36 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+input = ""
+player_input = ""
+  loop do
+    puts "Would you like to play another human or the computer?\nEnter the number of players [0, 1, 2]:"
+    input = gets.strip
+    break if input == "1" || input == "2" || input == "0"
+  end
+
+
+  if input == "1"
+    loop do
+      puts "Do you want to go first?[y/n]:"
+      player_input = gets.strip
+      break if player_input == "y"|| player_input == "n"
+    end
+  end
+
+  if input == "0"
+    game = Game.new(Players::Computer.new("X"),Players::Computer.new("O"), board = Board.new)
+  elsif input == "1" && player_input == "y"
+    game = Game.new(Players::Human.new("X"),Players::Computer.new("O"), board = Board.new)
+  elsif input == "1" && player_input == "n"
+    game = Game.new(Players::Computer.new("X"),Players::Human.new("O"), board = Board.new)
+  else
+    game = Game.new(Players::Human.new("X"),Players::Human.new("O"), board = Board.new)
+
+
+  end
+
+
+
+  game.play
