@@ -42,11 +42,12 @@ class Game
   end
 
   def play
-    #loop do
+    loop do
+      break if over?
       turn
-      #break if over?
-    #end
-    #won? ? puts "Congratulations #{self.winner}!" : puts "Cat's Game!"
+    end
+    puts "Congratulations #{winner}!" if won?
+    puts "Cat's Game!" if draw?
   end
 
 end
