@@ -2,8 +2,12 @@ module Players
   class Human < Player
 
     def move(board)
-      puts "Next Move:"
-      input = gets.strip
+      input = ""
+      puts "Please enter your next move (1-9): "
+      loop do
+        input = gets.strip
+        break if (1..9).include?(input.to_i)
+      end
       input
     end
   end

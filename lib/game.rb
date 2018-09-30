@@ -49,4 +49,72 @@ class Game
     puts "Cat's Game!" if draw?
   end
 
+  def start
+    input = ""
+    system "clear"
+    puts "Welcome to Tic-tac-toe v1.0"
+    puts ""
+    puts "1. 0-Player game mode (computer plays itself)"
+    puts "2. 1-Player game mode (human against computer)"
+    puts "3. 2-Player game mode (human against human)"
+    puts "4. Wargames mode"
+    puts "5. Exit"
+    puts ""
+    puts "Selection: "
+    loop do
+      input = gets.strip
+      break if (1..5).include?(input.to_i)
+    end
+    case input
+    when "1"
+      self.player_1 = Players::Computer.new("X")
+      self.player_2 = Players::Computer.new("O")
+      self.board.reset!
+      self.board.display
+      self.play
+    when "2"
+      self.player_1 = Players::Human.new("X")
+      self.player_2 = Players::Computer.new("O")
+      self.board.reset!
+      self.board.display
+      self.play
+    when "3"
+      self.player_1 = Players::Human.new("X")
+      self.player_2 = Players::Human.new("O")
+      self.board.reset!
+      self.board.display
+      self.play
+    when "4"
+      self.wargames
+    when "5"
+      return
+    end
+    puts ""
+    puts "Would you like to play again? (y/n)"
+    loop do
+      input = gets.strip
+      break if input == "y" || input == "Y" || input == "YES" || input == "yes" || input == "n" || input == "N" || input == "NO" || input == "no"
+    end
+    case input
+    when "y", "Y", "YES", "yes"
+      self.start
+    when "n", "N", "NO", "no"
+    end
+  end
+
+    def wargames
+      wins = 0
+      draws = 0
+      100.times do
+        self.player_1 = Players::Computer.new("X")
+        self.player_2 = Players::Computer.new("O")
+        self.board.reset!
+        self.board.display
+        self.play
+        wins += 1 if self.won?
+        draws += 1 if self.draw?
+      end
+      puts ""
+      puts "100 games were played and there were #{wins} wins and #{draws} draws."
+    end
 end
