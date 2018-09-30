@@ -38,6 +38,7 @@ class Game
     end
     @board.update(move, current_player)
     @board.display
+    puts ""
   end
 
   def play
