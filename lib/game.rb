@@ -124,7 +124,7 @@ class Game
       break if @board.valid_move?(dex)
     end
     @board.update( dex, token)
-    #display_board
+    @board.display
   end
 
   def play
