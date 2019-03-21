@@ -1,3 +1,82 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+def isValid?(input, choiceA, choiceB)
+    retVal = false
+    if (input == choiceA) || (input == choiceB)
+        retVal = true
+    else
+        retVal = false
+    end
+    
+    retVal
+end
+
+def getInput(choiceA, choiceB, prompt)
+    print("#{prompt}:  ")
+    inStr = gets.chomp
+    origStr = inStr
+
+    choiceA = choiceA.upcase
+    choiceB = choiceB.upcase
+    inStr = inStr.upcase 
+
+    while !isValid?(inStr, choiceA, choiceB)
+        puts("Invalid input.  Entered #{origStr}")
+        print("#{prompt}: ")
+        inStr = gets.chomp
+        origStr = inStr
+        inStr = inStr.upcase
+    end
+
+    inStr
+end
+
+#setup player information
+puts("Enter player information:")
+puts("=========================")
+p1 = getInput("H", "C", "Player1: Human or Computer? [H/C]")
+p1 == "H" ? player_1 = Players::Human.new("X") : player_1 = Players::Computer.new("X")
+p2 = getInput("H", "C", "Player2: Human or Computer? [H/C]")
+p2 == "H" ? player_2 = Players::Human.new("O") : player_2 = Players::Computer.new("O")
+
+wargames = "N"
+if (p1 == "C" && p2 == "C")
+    wargames = getInput("Y", "N", "Wargames is a series of 100 games.\nPlay wargames?")
+    wargames = wargames.upcase
+end
+puts("p1 = #{p1}, class=#{player_1.class} \np2 = #{p2}, class=#{player_2.class} \nwargames = #{wargames}")
+
+#setup board and game
+board = Board.new
+game = Game.new(player_1, player_2, board)
+
+if wargames == "Y"
+    100.times do
+        game.play
+        board.reset!
+    end
+    puts("Games won:  #{game.gamesWon}")
+    puts("Games CAT: #{game.gamesCat}")
+    game.printWinHistory
+else
+    #begin playing
+    again = true
+    while again
+        board.display
+        game.play 
+        input = getInput("Y", "N", "Play again? [Y/N]")
+        input.casecmp("Y") < 0 ? again = false : again = true;
+    end
+end
+
+
+
+
+
+
+
+
+
+
