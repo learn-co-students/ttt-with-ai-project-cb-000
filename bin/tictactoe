@@ -66,6 +66,7 @@ else
     while again
         board.display
         game.play 
+        board.reset!
         input = getInput("Y", "N", "Play again? [Y/N]")
         input.casecmp("Y") < 0 ? again = false : again = true;
     end
