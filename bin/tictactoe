@@ -1,3 +1,28 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+puts "-" * 25
+puts "Welcome to Tic-Tac-Toe"
+puts "-" * 25
+
+def new_game
+  print "How many players? (0, 1, 2): "
+  players = gets.strip
+
+  case players
+  when "0"
+    game = Game.new(Players::Computer.new("X"), Players::Computer.new("O"))
+  when "1"
+    game = Game.new(Players::Human.new("X"), Players::Computer.new("O"))
+  when "2"
+    game = Game.new()
+  end
+
+  loop do
+    new_game
+    print "Play again (y/n): "
+    input = gets.chomp
+    break if input == "n"
+  end
+end

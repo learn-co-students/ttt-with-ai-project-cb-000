@@ -1,0 +1,59 @@
+require 'pry'
+
+class Game
+  WIN_COMBINATIONS = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
+
+  attr_accessor :board, :player_1, :player_2
+
+  def initialize(player_1 = Players::Human.new("X"), player_2 = Players::Human.new("O"), board = Board.new)
+    @board = board
+    @player_1 = player_1
+    @player_2 = player_2
+  end
+
+  def current_player
+    self.board.turn_count % 2 == 0 ? self.player_1 : self.player_2
+  end
+
+  def over?
+    draw? || won?
+  end
+
+  def won?
+    WIN_COMBINATIONS.detect do |win_combination|
+      win_combination.all? {|position| self.board.cells[position] == "X"} ||
+      win_combination.all? {|position| self.board.cells[position] == "O"}
+    end
+  end
+
+  def draw?
+    !won? && self.board.full?
+  end
+
+  def winner
+    return self.board.cells[won?[0]] if won?
+  end
+
+  def turn
+    input = current_player.move(self.board)
+
+    if self.board.valid_move?(input)
+      self.board.update(input, current_player)
+      self.board.display
+    else
+      turn
+    end
+  end
+
+  def play
+    until over?
+      turn
+    end
+
+    if won?
+      puts "Congratulations #{winner}!"
+    elsif draw?
+      puts "Cat's Game!"
+    end
+  end
+end
