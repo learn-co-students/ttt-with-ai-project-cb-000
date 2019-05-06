@@ -1,3 +1,92 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+puts "Welcome to Tic-Tac-Toe!"
+
+input = nil
+
+until input == "quit" || input == "exit" || input == "q"
+
+  puts "We offer a 0 player, 1 player, or 2 player version of the game."
+  puts "Which version would you like to play?"
+
+  input = gets.strip
+  if input =~ /[_ ,-]/i
+    input = input.split(/[_ ,-]/)[0]
+  end
+  until input == "0" || input == "1" || input == "2" || input == "3" || input == "4" || input == "quit" || input == "exit" || input == "q" || input == "help"
+    puts "Please enter 0, 1, or 2.  You may also type 'quit' if you're done playing."
+    input = gets.strip
+    if input =~ /[_ ,-]/i
+      input = input.split(/[_ ,-]/)[0]
+    end
+  end
+
+  case input
+  when "0"
+    game = Game.new(Players::Computer.new("X"),Players::Computer.new("O"))
+    game.play
+    puts " "
+    puts "Would you like to try another version?"
+    input = gets.strip
+    until input == "y" || input == "yes" || input == "n" || input == "no" || input == "quit" || input == "q" || input == "exit"
+      puts "Enter 'yes' to play something.  Enter 'no' to quit."
+      input = gets.strip
+    end
+    if input == "no" || input == "n"
+      input = "exit"
+    end
+  when "1"
+    puts "And would you like you or the AI to go first?"
+    input = gets.strip
+    until input == "AI" || input == "Ai" || input == "the AI" || input == "me" || input == "player" || input == "computer"
+      puts "Enter 'AI' for the computer to go first or enter 'me' for the player to go first."
+    end
+    if input == "me" || input == "player"
+      game = Game.new(Players::Human.new("X"),Players::Computer.new("O"))
+    else
+      game = Game.new(Players::Computer.new("X"),Players::Human.new("O"))
+    end
+    game.play
+    puts " "
+    puts "Would you like to play again?"
+    input = gets.strip
+    until input == "y" || input == "yes" || input == "n" || input == "no" || input == "quit" || input == "q" || input == "exit"
+      puts "Enter 'yes' to play again.  Enter 'no' to quit."
+      input = gets.strip
+    end
+    if input == "no" || input == "n"
+      input = "exit"
+    end
+  when "2"
+    game = Game.new(Players::Human.new("X"),Players::Human.new("O"))
+    game.play
+    puts " "
+    puts "Would you like to play again?"
+    input = gets.strip
+    until input == "y" || input == "yes" || input == "n" || input == "no" || input == "quit" || input == "q" || input == "exit"
+      puts "Enter 'yes' to play again.  Enter 'no' to quit."
+      input = gets.strip
+    end
+    if input == "no" || input == "n"
+      input = "exit"
+    end
+  when "3"
+    puts "You could try playing with teams."
+    puts " "
+  when "4"
+    puts "You could try playing with teams."
+    puts " "
+  when "help"
+    puts "A 0 player game is between two AI."
+    puts "Enter '0' to play this version."
+    puts " "
+    puts "A 1 player game is between a player and the AI."
+    puts "Enter '1' to play this version."
+    puts " "
+    puts "A 2 player game is between two players."
+    puts "Unless you want to play against yourself, you'll need a second person with you."
+    puts "We can't offer additional people ourselves."
+  end
+end
