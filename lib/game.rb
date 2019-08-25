@@ -80,21 +80,24 @@ class Game
 
     selection = gets.chomp
 
-    # if selection == '2'
-    #   puts "Who do you want to go first?"
-    #   puts "(1) Human"
-    #   puts "(2) Computer"
-    #   first_player = gets.chomp
-    # end
+    first_player = nil
+    if selection == '2'
+      puts "Who do you want to go first?"
+      puts "(1) Human"
+      puts "(2) Computer"
+      first_player = gets.chomp
+    end
 
-    case selection
-    when '1'
+    if selection == '1'
       @player_1 = Players::Computer.new('X')
       @player_2 = Players::Computer.new('O')
-    when '2'
+    elsif selection == '2' && first_player == '1'
       @player_1 = Players::Human.new('X')
       @player_2 = Players::Computer.new('O')
-    when '3'
+    elsif selection == '2' && first_player == '2'
+      @player_1 = Players::Computer.new('X')
+      @player_2 = Players::Human.new('O')
+    elsif selection == '3'
       @player_1 = Players::Human.new('X')
       @player_2 = Players::Human.new('O')
     end
