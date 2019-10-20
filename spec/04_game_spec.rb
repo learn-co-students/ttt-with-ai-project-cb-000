@@ -259,7 +259,6 @@ describe 'Game' do
       allow(game).to receive(:winner).and_return("X")
 
       expect(game).to receive(:won?).at_least(:twice).and_return(false, false, true)
-
       game.play
     end
 
@@ -270,7 +269,6 @@ describe 'Game' do
       allow(game.player_2).to receive(:gets).and_return("3", "4")
 
       expect(game).to receive(:draw?).at_least(:twice).and_return(false, false, true)
-
       game.play
     end
 
@@ -281,7 +279,6 @@ describe 'Game' do
       allow($stdout).to receive(:puts)
 
       expect(game).to_not receive(:turn)
-
       game.play
     end
 
@@ -291,7 +288,6 @@ describe 'Game' do
       allow($stdout).to receive(:puts)
 
       expect($stdout).to receive(:puts).with("Congratulations X!")
-
       game.play
     end
 
@@ -339,7 +335,6 @@ describe 'Game' do
       expect(game.player_1).to receive(:gets).and_return("5")
       expect(game.player_2).to receive(:gets).and_return("6")
       expect(game.player_1).to receive(:gets).and_return("7")
-
       expect($stdout).to receive(:puts).with("Congratulations X!")
 
       game.play

@@ -1,3 +1,40 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+loop do
+	puts "CLI Ruby"
+	puts "1. 2 Player"
+	puts "2. 1 Player"
+	puts "3. 0 Player (AI vs. AI)"
+	puts "exit. Exit the game"
+	print "Select Option (1-3): "
+	inputs = gets.strip.split(" ")
+	skip_aftergame = false
+	case inputs[0]
+	when "1"
+		start_game(Players::Human, Players::Human)
+	when "2"
+		start_game(Players::Human, Players::Computer)
+	when "3"
+		start_game(Players::Computer, Players::Computer)
+	when "wargames"
+		if inputs.count > 1 && inputs[1].to_i > 0
+			run_ai_test(inputs[1].to_i)
+		else
+			run_ai_test
+		end
+	when "exit"
+		break
+	else
+		puts "Unreconized input."
+		skip_aftergame=true
+	end
+
+	if !skip_aftergame
+		print "Return to main menu (y/n): "
+		ret_in = gets.strip.downcase
+		break if ret_in=="n"
+	end
+
+end
